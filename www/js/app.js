@@ -16,4 +16,8 @@ angular.module('starter', ['ionic'])
       StatusBar.styleDefault();
     }
   });
+});
+var app=angular.module('starter',[]);
+app.controller('basic', function ($scope) {
+    $scope.number=15;
 })
