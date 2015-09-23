@@ -17,7 +17,7 @@ angular.module('starter', ['ionic'])
     }
   });
 });
-var app=angular.module('starter',['services']);
-app.controller('basic', function ($scope,modes) {
+var app=angular.module('starter',[]);
+app.controller('basic', function ($scope) {
     $scope.number=15;
 })
