@@ -29,7 +29,7 @@
       </ion-header-bar>
       <ion-content>
         <div ng-controller='basic'>
-          <input type="text" value="{{number}}" >
+          <input type="text" ng-model="input" value="{{number}}" required ng-change="time_reg()" >
         </div>
       </ion-content>
     </ion-pane>
