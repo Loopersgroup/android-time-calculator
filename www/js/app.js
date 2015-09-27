@@ -27,7 +27,7 @@ var app=angular.module('starter',[]);
 app.controller('basic', function ($scope) {
   console.log($scope.number);
   //time_reg($scope.number);
-  date_reg($scope.number);
+  //date_reg($scope.number);
   $scope.temp='';
 
 $scope.time_reg = function($num,$s)
@@ -93,6 +93,71 @@ $scope.date_reg=function($num,$s)
     console.log("true5");
   }
 };
+
+//-------------------------------------------------------------------------------------------
+//  $scope.date_time_reg=function($num,$s)
+//  {
+//    if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:(0|1|2|3|4|5)?\d$/.test(c))
+//    {
+//      console.log("true1");
+//      return 2;
+//    }
+//    else if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/$/.test(c))
+//    {
+//     console.log("true2");
+//      return 1;
+//    }
+//    else if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))$/.test(c))
+//    {
+//      console.log("true3");
+//      return 1;
+//    }
+//    else if(/\d{4,5}\/$/.test(c))
+//    {
+//      console.log("true4");
+//      return 1;
+//    }
+//    else if(/\d{4}$/.test(c))
+//    {
+//      console.log("true5");
+//      return 1;
+//    }
+//
+//    if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:(0|1|2|3|4|5)?\d$/.test(c))
+//    {
+//      console.log("true1");
+//      return 1;
+//    }
+//    else if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:$/.test(c))
+//    {
+//      console.log("true2")
+//      return 1;
+//    }
+//    else if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d$/.test(c))
+//    {
+//      console.log("true3")
+//      return 1;
+//    }
+//    else if(/^(?:[01]?\d|2[0-3]):$/.test(c))
+//    {
+//      console.log("true4")
+//      return 1;
+//    }
+//    else if(/^(?:[01]?\d|2[0-3])$/.test(c))
+//    {
+//      console.log("true5")
+//      return 1;
+//    }
+//    else if(/\d{1}/.test(c))
+//    {
+//      console.log("true6")
+//      return 1;
+//    }
+//    else{
+//      console.log(false);
+//  }
+//  };
+
 //--------------------------------------------------------------------------------------------
 $scope.matrix=function()
 {
@@ -248,9 +313,8 @@ $scope.matrix=function()
 
 $scope.check=function($s)
 {
-  var t = time_reg($scope.temp,$s);
-  var d = date_reg($scope.temp,$s);
-
+  var t = $scope.time_reg($scope.temp,$s);
+  var d = $scope.date_reg($scope.temp,$s);
   if(t|d)
   {
     $scope.temp+=$s;
