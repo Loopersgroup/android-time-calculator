@@ -29,8 +29,20 @@
       </ion-header-bar>
       <ion-content>
         <div ng-controller='basic'>
-          <input type="text" ng-model="input" value="{{number}}" >
-          <input type="button" value="1" ng-click="check('1')"/>
+          <input type="text" value="{{number}}" disabled="disable" >
+          <input type="button" value="1" ng-click="check('1')" />
+          <input type="button" value="2" ng-click="check('2')" />
+          <input type="button" value="3" ng-click="check('3')" />
+          <input type="button" value="4" ng-click="check('4')" />
+          <input type="button" value="5" ng-click="check('5')" />
+          <input type="button" value="6" ng-click="check('6')" />
+          <input type="button" value="7" ng-click="check('7')" />
+          <input type="button" value="8" ng-click="check('8')" />
+          <input type="button" value="9" ng-click="check('9')" />
+          <input type="button" value="0" ng-click="check('0')"/>
+          <br/>
+          <input type="button" value=":" ng-click="check(':')"/>
+
         </div>
       </ion-content>
     </ion-pane>
