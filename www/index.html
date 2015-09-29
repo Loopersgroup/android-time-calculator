@@ -20,6 +20,10 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/enabled.js"></script>
+    <script src="js/regex.js"></script>
+
   </head>
   <body ng-app="starter">
 
@@ -41,8 +45,8 @@
           <input type="button" value="9" ng-click="check('9')" />
           <input type="button" value="0" ng-click="check('0')"/>
           <br/>
-          <input type="button" value=":" ng-click="check(':')"/>
-
+          <input type="button" value=":" ng-click="check(':')" ng-disabled="disTime"/>
+          <input type="button" value="+" ng-click="check('+')" ng-disabled="disPlus"/>
         </div>
       </ion-content>
     </ion-pane>
