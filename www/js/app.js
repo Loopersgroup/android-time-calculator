@@ -20,6 +20,7 @@ angular.module('starter', ['ionic'])
     });
   })
   .controller('basic', function ($scope) {
+ //   $scope.matrix();
     console.log($scope.number);
     //time_reg($scope.number);
     //date_reg($scope.number);
@@ -37,6 +38,7 @@ angular.module('starter', ['ionic'])
       //var path=/(00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23)/;
       if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:(0|1|2|3|4|5)?\d$/.test(c))
       {
+       // enabled.output.timeEnabled($num,$s);
         console.log("true1");
         return 2;
       }
@@ -72,7 +74,7 @@ angular.module('starter', ['ionic'])
     }
 
 //-------------------------------------------------------------------------------------------
-    $scope.date_reg=function($num,$s)
+    $scope.date_reg = function($num,$s)
     {
       var c=$num+$s;
       if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])$/.test(c))
@@ -101,8 +103,9 @@ angular.module('starter', ['ionic'])
     };
 
 //-------------------------------------------------------------------------------------------
-    $scope.date_time_reg=function($num,$s)
+    $scope.date_time_reg = function($num,$s)
     {
+      var c=$num + $s;
       if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:(0|1|2|3|4|5)?\d$/.test(c))
       {
         console.log("true1");
@@ -322,6 +325,11 @@ angular.module('starter', ['ionic'])
       var t = $scope.time_reg($scope.temp,$s);
       var d = $scope.date_reg($scope.temp,$s);
       if(t)
+      {
+
+;
+      }
+      if(t|d)
       {
         $scope.num($s);
         $scope.temp+=$s;

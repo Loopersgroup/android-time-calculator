@@ -59,6 +59,8 @@ services.factory('modes',function()
     {
       console.log();
     };
+
+    output.time_enable()
     return output;
 
   };
