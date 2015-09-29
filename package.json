@@ -23,5 +23,19 @@
   ],
   "cordovaPlatforms": [
     "ios"
-  ]
+  ],
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Loopersgroup/time-calculator-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Loopersgroup/time-calculator-app/issues"
+  },
+  "homepage": "https://github.com/Loopersgroup/time-calculator-app#readme"
 }

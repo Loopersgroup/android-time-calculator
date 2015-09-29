@@ -5,11 +5,8 @@
 var services= angular.module('services',[]);
 services.factory('modes',function()
 {
-  var factory=function()
-  {
+
     var output={};
-
-
 
     output.Mode_Date={
 
@@ -39,6 +36,7 @@ services.factory('modes',function()
 
       year:0,
       month:0,
+      week:0,
       day:0,
       hour:0,
       minute:0,
@@ -61,7 +59,5 @@ services.factory('modes',function()
     };
     return output;
 
-  };
 
-  return factory;
 });
