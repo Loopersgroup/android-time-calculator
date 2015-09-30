@@ -23,7 +23,7 @@
     <script src="js/services.js"></script>
     <script src="js/enabled.js"></script>
     <script src="js/regex.js"></script>
-
+    <script src="js/matrixes.js"></script>
   </head>
   <body ng-app="starter">
 
@@ -34,19 +34,25 @@
       <ion-content>
         <div ng-controller='basic'>
           <input type="text" value="{{number}}" disabled="disable" >
-          <input type="button" value="1" ng-click="check('1')" />
-          <input type="button" value="2" ng-click="check('2')" />
-          <input type="button" value="3" ng-click="check('3')" />
-          <input type="button" value="4" ng-click="check('4')" />
-          <input type="button" value="5" ng-click="check('5')" />
-          <input type="button" value="6" ng-click="check('6')" />
-          <input type="button" value="7" ng-click="check('7')" />
-          <input type="button" value="8" ng-click="check('8')" />
-          <input type="button" value="9" ng-click="check('9')" />
-          <input type="button" value="0" ng-click="check('0')"/>
+          <input type="button" value="1" ng-click="check('1')" ng-disabled = "arr.num1"/>
+          <input type="button" value="2" ng-click="check('2')" ng-disabled = "arr.num2"/>
+          <input type="button" value="3" ng-click="check('3')" ng-disabled = "arr.num3"/>
+          <input type="button" value="4" ng-click="check('4')" ng-disabled = "arr.num4"/>
+          <input type="button" value="5" ng-click="check('5')" ng-disabled = "arr.num5"/>
+          <input type="button" value="6" ng-click="check('6')" ng-disabled = "arr.num6"/>
+          <input type="button" value="7" ng-click="check('7')" ng-disabled = "arr.num7"/>
+          <input type="button" value="8" ng-click="check('8')" ng-disabled = "arr.num8"/>
+          <input type="button" value="9" ng-click="check('9')" ng-disabled = "arr.num9"/>
+          <input type="button" value="0" ng-click="check('0')" ng-disabled = "arr.num0"/>
           <br/>
-          <input type="button" value=":" ng-click="check(':')" ng-disabled="disTime"/>
-          <input type="button" value="+" ng-click="check('+')" ng-disabled="disPlus"/>
+          <input type="button" value=":" ng-click="check(':')" ng-disabled = "arr.colon"/>
+          <input type="button" value="+" ng-click="check('+')" ng-disabled = "arr.plus"/>
+          <input type="button" value="-" ng-click="check('+')" ng-disabled = "arr.sub"/>
+          <input type="button" value="*" ng-click="check('+')" ng-disabled = "arr.multi"/>
+          <input type="button" value="/" ng-click="check('+')" ng-disabled = "arr.slash"/>
+          <input type="button" value="to" ng-click="check('+')" ng-disabled = "arr.to"/>
+          <input type="button" value="d/" ng-click="check('+')" ng-disabled = "arr.div"/>
+          <input type="button" value="." ng-click="check('+')" ng-disabled = "arr.dot"/>
         </div>
       </ion-content>
     </ion-pane>

@@ -19,82 +19,108 @@ app.run(function($ionicPlatform) {
     }
   });
 })
-app.controller('basic', function ($scope,regex,enabled){
-  $scope.disPlus=true;
+app.controller('basic', function($scope,regex,enabled,difinition){
+  $scope.arr={
+    num1:false,
+    num2:false,
+    num3:false,
+    num4:false,
+    num5:false,
+    num6:false,
+    num7:false,
+    num8:false,
+    num9:false,
+    num0:false,
+    slash:true,
+    colon:true,
+    plus:true,
+    sub:true,
+    dot:true,
+    div:true,
+    multi:true,
+    to:true,
+    year:true,
+    mon:true,
+    week:true,
+    day:true,
+    hour:true,
+    min:true,
+    sec:true
+  };
   //   $scope.matrix();
+  $scope.number='';
   console.log($scope.number);
   //time_reg($scope.number);
   //date_reg($scope.number);
   $scope.temp='';
-  $scope.number='';
   $scope.num=function($n)
   {
     $scope.number += $n;
   }
 //-------------------------------------------------------------------------------------------
-  $scope.date_time_reg = function($num,$s)
-  {
-    var c=$num + $s;
-    if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:(0|1|2|3|4|5)?\d$/.test(c))
-    {
-      console.log("true1");
-      return 2;
-    }
-    else if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/$/.test(c))
-    {
-      console.log("true2");
-      return 1;
-    }
-    else if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))$/.test(c))
-    {
-      console.log("true3");
-      return 1;
-    }
-    else if(/\d{4,5}\/$/.test(c))
-    {
-      console.log("true4");
-      return 1;
-    }
-    else if(/\d{4}$/.test(c))
-    {
-      console.log("true5");
-      return 1;
-    }
-
-    if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:(0|1|2|3|4|5)?\d$/.test(c))
-    {
-      console.log("true1");
-      return 1;
-    }
-    else if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:$/.test(c))
-    {
-      console.log("true2")
-      return 1;
-    }
-    else if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d$/.test(c))
-    {
-      console.log("true3")
-      return 1;
-    }
-    else if(/^(?:[01]?\d|2[0-3]):$/.test(c))
-    {
-      console.log("true4")
-      return 1;
-    }
-    else if(/^(?:[01]?\d|2[0-3])$/.test(c))
-    {
-      console.log("true5")
-      return 1;
-    }
-    else if(/\d{1}/.test(c))
-    {
-      console.log("true6")
-      return 1;
-    }
-    else{
-      console.log(false);
-    }
-  };
+//  $scope.date_time_reg = function($num,$s)
+//  {
+//    var c=$num + $s;
+//    if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:(0|1|2|3|4|5)?\d$/.test(c))
+//    {
+//      console.log("true1");
+//      return 2;
+//    }
+//    else if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/$/.test(c))
+//    {
+//      console.log("true2");
+//      return 1;
+//    }
+//    else if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))$/.test(c))
+//    {
+//      console.log("true3");
+//      return 1;
+//    }
+//    else if(/\d{4,5}\/$/.test(c))
+//    {
+//      console.log("true4");
+//      return 1;
+//    }
+//    else if(/\d{4}$/.test(c))
+//    {
+//      console.log("true5");
+//      return 1;
+//    }
+//
+//    if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:(0|1|2|3|4|5)?\d$/.test(c))
+//    {
+//      console.log("true1");
+//      return 1;
+//    }
+//    else if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:$/.test(c))
+//    {
+//      console.log("true2")
+//      return 1;
+//    }
+//    else if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d$/.test(c))
+//    {
+//      console.log("true3")
+//      return 1;
+//    }
+//    else if(/^(?:[01]?\d|2[0-3]):$/.test(c))
+//    {
+//      console.log("true4")
+//      return 1;
+//    }
+//    else if(/^(?:[01]?\d|2[0-3])$/.test(c))
+//    {
+//      console.log("true5")
+//      return 1;
+//    }
+//    else if(/\d{1}/.test(c))
+//    {
+//      console.log("true6")
+//      return 1;
+//    }
+//    else{
+//      console.log(false);
+//    }
+//  };
 
 //--------------------------------------------------------------------------------------------
   $scope.matrix=function()
@@ -251,23 +277,57 @@ app.controller('basic', function ($scope,regex,enabled){
 
   $scope.check=function($s)
   {
-    $scope.disPlus=true;
-    var t = regex.time_reg($scope.temp,$s);
-    var d = regex.date_reg($scope.temp,$s);
+    disAll();
+    var t = regex.time_reg($scope.arr,$scope.number,$s);
+   // var d = regex.date_reg($scope.arr,$scope.number,$s);
+
+
+    $scope.num($s);
     if(t==2)
     {
-      $scope.disPlus=false;
+
     }
     if(t)
+    {
 
-      if(t|d)
+    }
+      if(t/*|d*/)
       {
-        $scope.num($s);
         $scope.temp+=$s;
       }
       else
       {
         console.log("false");
       }
+  }
+
+  //========= Disable All============================
+  var disAll=function()
+  {
+    $scope.arr.num1=true;
+    $scope.arr.num2=true;
+    $scope.arr.num3=true;
+    $scope.arr.num4=true;
+    $scope.arr.num5=true;
+    $scope.arr.num6=true;
+    $scope.arr.num7=true;
+    $scope.arr.num8=true;
+    $scope.arr.num9=true;
+    $scope.arr.num0=true;
+    $scope.arr.plus=true;
+    $scope.arr.sub=true;
+    $scope.arr.div=true;
+    $scope.arr.multi=true;
+    $scope.arr.to=true;
+    $scope.arr.year=true;
+    $scope.arr.week=true;
+    $scope.arr.mon=true;
+    $scope.arr.day=true;
+    $scope.arr.hour=true;
+    $scope.arr.min=true;
+    $scope.arr.sec=true;
+    $scope.arr.slash=true;
+    $scope.arr.dot=true;
+    $scope.arr.colon=true;
   }
 });
