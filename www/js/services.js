@@ -2,16 +2,10 @@
  * Created by Mina on 9/23/2015.
  */
 
-var services= angular.module('services',[]);
-services.factory('modes',function()
+app.factory('modes',function()
 {
-  var factory=function()
-  {
-    var output={};
-
-
-
-    output.Mode_Date={
+  var factory={};
+    factory.Mode_Date={
 
       year:0,
       month:0,
@@ -19,7 +13,7 @@ services.factory('modes',function()
 
     };
 
-    output.Mode_Date_Time= {
+    factory.Mode_Date_Time= {
 
       year:0,
       month:0,
@@ -29,23 +23,24 @@ services.factory('modes',function()
       second:0
     };
 
-    output.Mode_SimpleNum= {
+    factory.Mode_SimpleNum= {
 
       num:0
 
     };
 
-    output.Mode_Piece={
+    factory.Mode_Piece={
 
       year:0,
       month:0,
+      week:0,
       day:0,
       hour:0,
       minute:0,
       second:0
 
     };
-    output.Mode_Time={
+    factory.Mode_Time={
 
       day:0,
       hour:0,
@@ -53,17 +48,6 @@ services.factory('modes',function()
       second:0
 
     };
+    return factory;
 
-
-    output.printResult = function()
-    {
-      console.log();
-    };
-
-    output.time_enable()
-    return output;
-
-  };
-
-  return factory;
-});
+  });
