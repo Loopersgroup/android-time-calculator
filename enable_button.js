@@ -29,8 +29,6 @@ services.factory('piece',function($present) {
     disMinus:0;
     disMultiply:0;
     disDivision:0;
-
-
   }
   if($present=='m')
   {

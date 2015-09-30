@@ -109,6 +109,12 @@ angular.module('starter', ['ionic' , 'services'])
           $scope.num($s);
           $scope.temp+=$s;
         }
+        if(d==1){
+
+
+        }
+
+
         else
         {
           console.log("false");
