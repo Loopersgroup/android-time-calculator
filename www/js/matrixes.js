@@ -155,32 +155,6 @@ app.factory('difinition',function()
     factory.divisionArray[4][3] = 0;
     factory.divisionArray[4][4] = 5;
   }
-  factory.status_key={
-    num1:false,
-    num2:false,
-    num3:false,
-    num4:false,
-    num5:false,
-    num6:false,
-    num7:false,
-    num8:false,
-    num9:false,
-    num0:false,
-    slash:true,
-    colon:true,
-    plus:true,
-    sub:true,
-    dot:true,
-    div:true,
-    multi:true,
-    to:true,
-    year:true,
-    mon:true,
-    week:true,
-    day:true,
-    hour:true,
-    min:true,
-    sec:true
-  };
+
   return factory;
 });

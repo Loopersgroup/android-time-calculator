@@ -53,31 +53,37 @@ app.factory('regex',function(enabled)
       }
 
   };
-  factory.date_reg = function($arr,$num,$s)
+  factory.date_reg = function($num,$s)
   {
     var c=$num+$s;
-    if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])$/.test(c))
+    if(/^(?:\d{1,4})\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])$/.test(c))
     {
-      console.log("true1");
+      console.log("date_FULL");
       return 2;
     }
-    else if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/$/.test(c))
+    else if(/^(?:\d{1,4})\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/$/.test(c))
     {
-      console.log("true2");
+      console.log("date4");
       return 1;
     }
-    else if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))$/.test(c))
+    else if(/^(?:\d{1,4})\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))$/.test(c))
     {
-      console.log("true3");
+      console.log("date3");
       return 1;
     }
-    else if(/\d{4,5}\/$/.test(c))
+    else if(/^(?:\d{1,4})\/$/.test(c))
     {
-      console.log("true4");
+      console.log("date2");
+      return 1;
     }
-    else if(/\d{4}$/.test(c))
+    else if(/^(?:\d{1,4})$/.test(c))
     {
-      console.log("true5");
+      console.log("date1");
+      return 1;
+    }
+    else {
+      console.log("date0");
+      return 0;
     }
   };
   return factory;
