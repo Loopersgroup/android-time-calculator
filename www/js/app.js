@@ -46,157 +46,15 @@ app.run(function($ionicPlatform) {
       day:true,
       hour:true,
       min:true,
-      sec:true
+      sec:true,
     }
-    var $str='1234';
+    //var $str='1234';
 
     $scope.num=function($n)
     {
       $scope.number += $n;
     }
 
-
-
-//     regex.time_reg();
-//    //
-//    //$scope.time_reg = function($num,$present)
-//    //{
-//    //  var c=$num+$present;
-//    //  console.log($num);
-//    //
-//    //  if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:(0|1|2|3|4|5)?\d$/.test(c))
-//    //  {
-//    //   // enabled.output.timeEnabled($num,$s);
-//    //    console.log("true1");
-//    //    return 2;
-//    //  }
-//    //  else if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:$/.test(c))
-//    //  {
-//    //    console.log("true2")
-//    //    return 1;
-//    //  }
-//    //  else if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d$/.test(c))
-//    //  {
-//    //    console.log("true3")
-//    //    return 1;
-//    //  }
-//    //  else if(/^(?:[01]?\d|2[0-3]):$/.test(c))
-//    //  {
-//    //    console.log("true4")
-//    //    return 1;
-//    //  }
-//    //  else if(/^(?:[01]?\d|2[0-3])$/.test(c))
-//    //  {
-//    //    console.log("true5");
-//    //    return 1;
-//    //  }
-//    //  else if(/\d[01]/.test(c))
-//    //  {
-//    //    console.log("true6")
-//    //    return 1;
-//    //  }
-//    //  else {
-//    //    return 0;
-//    //    console.log(false);
-//    //  }
-//    //}
-//
-////-------------------------------------------------------------------------------------------
-////    $scope.date_reg = function($num,$present)
-////    {
-////      var c=$num+$present;
-////      if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])$/.test(c))
-////      {
-////        console.log("true1");
-////        return 2;
-////      }
-////      else if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/$/.test(c))
-////      {
-////        console.log("true2");
-////        return 1;
-////      }
-////      else if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))$/.test(c))
-////      {
-////        console.log("true3");
-////        return 1;
-////      }
-////      else if(/\d{4,5}\/$/.test(c))
-////      {
-////        console.log("true4");
-////      }
-////      else if(/\d{4}$/.test(c))
-////      {
-////        console.log("true5");
-////      }
-////    };
-//
-//    regex.date_reg();
-////-------------------------------------------------------------------------------------------
-//    $scope.date_time_reg = function($num,$present)
-//    {
-//      var c=$num + $present;
-//      if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:(0|1|2|3|4|5)?\d$/.test(c))
-//      {
-//        console.log("true1");
-//        return 2;
-//      }
-//      else if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))\/$/.test(c))
-//      {
-//        console.log("true2");
-//        return 1;
-//      }
-//      else if(/\d{4}\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))$/.test(c))
-//      {
-//        console.log("true3");
-//        return 1;
-//      }
-//      else if(/\d{4,5}\/$/.test(c))
-//      {
-//        console.log("true4");
-//        return 1;
-//      }
-//      else if(/\d{4}$/.test(c))
-//      {
-//        console.log("true5");
-//        return 1;
-//      }
-//
-//      if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:(0|1|2|3|4|5)?\d$/.test(c))
-//      {
-//
-//        console.log("true1");
-//        return 1;
-//      }
-//      else if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:$/.test(c))
-//      {
-//        console.log("true2")
-//        return 1;
-//      }
-//      else if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d$/.test(c))
-//      {
-//        console.log("true3")
-//        return 1;
-//      }
-//      else if(/^(?:[01]?\d|2[0-3]):$/.test(c))
-//      {
-//        console.log("true4")
-//        return 1;
-//      }
-//      else if(/^(?:[01]?\d|2[0-3])$/.test(c))
-//      {
-//        console.log("true5")
-//        return 1;
-//      }
-//      else if(/\d{1}/.test(c))
-//      {
-//        console.log("true6")
-//        return 1;
-//      }
-//      else{
-//        console.log(false);
-//      }
-//    };
-//
 ////--------------------------------------------------------------------------------------------
     var disAll=function()
     {
@@ -232,68 +90,15 @@ app.run(function($ionicPlatform) {
       {
         disAll();
         var d = regex.date_reg($scope.number,$s);
-        var p = $scope.reg_piece($scope.number,$s);
+      //  var p = $scope.reg_piece($scope.number,$s);
         if(d)
       {
-        console.log("d=1,"+$s);
         enabled.dateEnabled($scope.arr,$scope.number,$s)
       }
         $scope.num($s);
 
 
       };
-
-
-    $scope.reg_piece=function($temp,$present)
-    {
-      var c=$temp + $present;
-      if (/\d/.test($present)) {
-        //$scope.main_temp = $scope.temp + $scope.present;
-        console.log($present)
-        $scope.arr.year=false;
-        $scope.arr.mon=false;
-        $scope.arr.week=false;
-        $scope.arr.day=false;
-        $scope.arr.hour=false;
-        $scope.arr.min=false;
-        $scope.arr.sec=false;
-        $scope.arr.num0 = false;
-        $scope.arr.num1 = false;
-        $scope.arr.num2 = false;
-        $scope.arr.num3 = false;
-        $scope.arr.num4 = false;
-        $scope.arr.num5 = false;
-        $scope.arr.num6 = false;
-        $scope.arr.num7 = false;
-        $scope.arr.num8 = false;
-        $scope.arr.num9 = false;
-        return 1;
-      }
-      else if($present == 'y' | $present == 'mon' | $present =='w' |  $present == 'd' |  $present == 'h' | $present == 'min' | $present == 'sec')
-      {
-        $scope.arr.year=false;
-        $scope.arr.mon=false;
-        $scope.arr.week=false;
-        $scope.arr.day=false;
-        $scope.arr.hour=false;
-        $scope.arr.min=false;
-        $scope.arr.sec=false;
-        $scope.arr.num0 = false;
-        $scope.arr.num1 = false;
-        $scope.arr.num2 = false;
-        $scope.arr.num3 = false;
-        $scope.arr.num4 = false;
-        $scope.arr.num5 = false;
-        $scope.arr.num6 = false;
-        $scope.arr.num7 = false;
-        $scope.arr.num8 = false;
-        $scope.arr.num9 = false;
-      }
-        else {
-          console.log("false");
-        }
-
-      }
 
   });
 

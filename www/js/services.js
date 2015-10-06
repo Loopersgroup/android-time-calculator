@@ -7,45 +7,45 @@ app.factory('modes',function()
   var factory={};
     factory.Mode_Date={
 
-      year:0,
-      month:0,
-      day:0
+      year:'',
+      month:'',
+      day:''
 
     };
 
     factory.Mode_Date_Time= {
 
-      year:0,
-      month:0,
-      day:0,
-      hour:0,
-      minute:0,
-      second:0
+      year:'',
+      month:'',
+      day:'',
+      hour:'',
+      minute:'',
+      second:''
     };
 
     factory.Mode_SimpleNum= {
 
-      num:0
+      num:''
 
     };
 
     factory.Mode_Piece={
 
-      year:0,
-      month:0,
-      week:0,
-      day:0,
-      hour:0,
-      minute:0,
-      second:0
+      year:'',
+      month:'',
+      week:'',
+      day:'',
+      hour:'',
+      minute:'',
+      second:''
 
     };
     factory.Mode_Time={
 
-      day:0,
-      hour:0,
-      minute:0,
-      second:0
+      day:'',
+      hour:'',
+      minute:'',
+      second:''
 
     };
     return factory;

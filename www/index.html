@@ -46,18 +46,20 @@
           <input type="button" value="8" ng-click="check('8')" ng-disabled="arr.num8" />
           <input type="button" value="9" ng-click="check('9')" ng-disabled="arr.num9" />
           <input type="button" value="0" ng-click="check('0')" ng-disabled="arr.num0"/>
-
           <br/>
           <input type="button" value=":" ng-click="check(':')" ng-disabled="arr.colon"/>
           <input type="button" value="/" ng-click="check('/')" ng-disabled="arr.slash"/>
-          <input type="button" value="y" ng-click="check('y')" ng-disabled="arr.year"/>
-          <input type="button" value="m" ng-click="check('mon')" ng-disabled="arr.mon"/>
-          <input type="button" value="w" ng-click="check('w')" ng-disabled="arr.week"/>
-          <input type="button" value="w" ng-click="check('d')" ng-disabled="arr.day"/>
-          <input type="button" value="h" ng-click="check('h')" ng-disabled="arr.hour"/>
+          <input type="button" value="year" ng-click="check('y')" ng-disabled="arr.year"/>
+          <input type="button" value="month" ng-click="check('mon')" ng-disabled="arr.mon"/>
+          <input type="button" value="week" ng-click="check('w')" ng-disabled="arr.week"/>
+          <input type="button" value="day" ng-click="check('d')" ng-disabled="arr.day"/>
+          <input type="button" value="hour" ng-click="check('h')" ng-disabled="arr.hour"/>
           <input type="button" value="min" ng-click="check('min')" ng-disabled="arr.min"/>
           <input type="button" value="sec" ng-click="check('sec')" ng-disabled="arr.sec"/>
-
+          <br/>
+          <input type="button" value="+" ng-click="check('+')" ng-disabled="arr.plus"/>
+          <input type="button" value="-" ng-click="check('-')" ng-disabled="arr.sub"/>
+          <input type="button" value="to" ng-click="check('to')" ng-disabled="arr.to"/>
 
         </div>
       </ion-content>
