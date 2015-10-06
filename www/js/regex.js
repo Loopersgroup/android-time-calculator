@@ -6,7 +6,6 @@ app.factory('regex',function(enabled)
   var factory = {};
   factory.time_reg=function($arr,$num,$s)
   {
-    console.log("hello" + $arr.test);
       var c=$num+$s;
       console.log($num);
       //var path=/([0-1][0-9])|2[0-3]/;

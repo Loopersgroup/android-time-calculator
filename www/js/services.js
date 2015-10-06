@@ -2,11 +2,8 @@
  * Created by Mina on 9/23/2015.
  */
 
-var services= angular.module('services',[]);
-services.factory('modes',function()
+app.factory('modes',function()
 {
-  var factory=function()
-  {
     var output={};
 
 
@@ -54,16 +51,7 @@ services.factory('modes',function()
 
     };
 
-
-    output.printResult = function()
-    {
-      console.log();
-    };
-
-    output.time_enable()
+    //output.time_enable()
     return output;
 
-  };
-
-  return factory;
 });

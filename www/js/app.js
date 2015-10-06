@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 
 
-var app=angular.module('starter', ['ionic','services']);
+var app=angular.module('starter', ['ionic']);
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -47,6 +47,8 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes){
     min:true,
     sec:true
   };
+
+  $scope.pre_number='';
   //   $scope.matrix();
   $scope.number='';
   //time_reg($scope.number);
@@ -126,17 +128,38 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes){
   $scope.check=function($s)
   {
     disAll();
-    var t = regex.time_reg($scope.arr,$scope.number,$s);
-    var d = regex.date_reg($scope.number,$s);
-    var p = enabled.reg_piece($scope.arr,$scope.number,$s);
-    if(d)
+    if($s=='<=')
     {
-      console.log("d=1,"+$s);
-      enabled.dateEnabled($scope.arr,$scope.number,$s)
+      var temp_check=$scope.number.substr($scope.number.length - 1,$scope.number.length);
+      if(/\d/.test(temp_check) || temp_check==":" || temp_check == "/")
+      {
+
+        $scope.number = $scope.number.replace(/.$/, "");
+        console.log("test =" + $scope.number);
+        enabled.dateEnabled($scope.arr,$scope.number,$s);
+        var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
+        console.log("temp_s =" + temp_s);
+        $scope.number = $scope.number.replace(/.$/, "");
+        $scope.check(temp_s);
+      }
+      else
+      {
+        console.log("more than 1 character");
+      }
     }
+    else {
+      console.log("pre =" + $scope.pre_number);
+      var t = regex.time_reg($scope.arr, $scope.number, $s);
+      var d = regex.date_reg($scope.number, $s);
+      var p = enabled.reg_piece($scope.arr, $scope.number, $s);
+      if (d) {
+        console.log("d=1," + $s);
+        enabled.dateEnabled($scope.arr, $scope.number, $s)
+      }
 
-    $scope.num($s);
-
+      $scope.num($s);
+      $scope.pre_number = $s;
+    }
   };
 
   //========= Disable All============================
