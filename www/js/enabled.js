@@ -39,7 +39,7 @@ app.factory('enabled',function(){
     {
       return 0;
     }
-  }
+  };
 
   //=======Change Status=====================
   output.changeStatus=function($arr,$s)
@@ -118,7 +118,7 @@ app.factory('enabled',function(){
     {
       t=time_reg($arr,temp,i);
       if(t!=0)
-       output.changeStatus($arr,i);
+        output.changeStatus($arr,i);
     }
     var com=time_reg(temp);
     if(com == 2)
@@ -147,102 +147,51 @@ app.factory('enabled',function(){
   output.dateEnabled=function($arr,$string,$present) {
     console.log("present = "+ $present);
     check_temp=$string + $present;
-    if ((check_temp.search("y")>0 || check_temp.search("mon")>0 || check_temp.search("d")>0 || check_temp.search("h")>0
-      || check_temp.search("min")>0 || check_temp.search("sec")>0 || check_temp.search(":")>0)) {
+    if($d1_flag == 1 && $d2_flag == 1)
+    {
+
     }
     else {
-      var $sample = $string + $present;
-      if ($present == '/') {
-        $slash_flag += 1;
-      }
-      if ((/\d\/\d$/).test($sample)) {
-        $m1_flag = 1;
-      }
-      if ((/\d\/\d\d$/).test($sample)) {
-        $m2_flag = 1;
-      }
-      if ((/\d\/\d?\d\/\d$/).test($sample)) {
-        $d1_flag = 1;
-      }
-      if ((/\d\/\d?\d\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])$}/).test($sample)) {
-        $d2_flag = 1;
+      if ((check_temp.search("y") > 0 || check_temp.search("mon") > 0 || check_temp.search("d") > 0 || check_temp.search("h") > 0
+        || check_temp.search("min") > 0 || check_temp.search("sec") > 0 || check_temp.search(":") > 0)) {
       }
 
-      if (/\d/.test($present) && $slash_flag == 0) {
-        $arr.num0 = false;
-        $arr.num1 = false;
-        $arr.num2 = false;
-        $arr.num3 = false;
-        $arr.num4 = false;
-        $arr.num5 = false;
-        $arr.num6 = false;
-        $arr.num7 = false;
-        $arr.num8 = false;
-        $arr.num9 = false;
-        $arr.slash = false;
-      }
-      if ($present == '/' && $m1_flag == 0 && $slash_flag == 1) {
-        $arr.num0 = false;
-        $arr.num1 = false;
-        $arr.num2 = false;
-        $arr.num3 = false;
-        $arr.num4 = false;
-        $arr.num5 = false;
-        $arr.num6 = false;
-        $arr.num7 = false;
-        $arr.num8 = false;
-        $arr.num9 = false;
+      else {
+        var $sample = $string + $present;
+        if ($present == '/') {
+          $slash_flag += 1;
+        }
+        if ((/\d\/\d$/).test($sample)) {
+          $m1_flag = 1;
+        }
+        if ((/\d\/\d\d$/).test($sample)) {
+          $m2_flag = 1;
+        }
+        if ((/\d\/\d?\d\/\d$/).test($sample)) {
+          $d1_flag = 1;
+        }
+        if (/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))$/.test($sample)) {
+          $d2_flag = 1;
+          $arr.plus = false;
+          $arr.sub = false;
+          $arr.to = false;
+        }
 
-      }
-
-      if ($present == 0 && $m1_flag == 1 && $slash_flag == 1) {
-        $arr.num0 = false;
-        $arr.num1 = false;
-        $arr.num2 = false;
-        $arr.num3 = false;
-        $arr.num4 = false;
-        $arr.num5 = false;
-        $arr.num6 = false;
-        $arr.num7 = false;
-        $arr.num8 = false;
-        $arr.num9 = false;
-        $arr.slash = false;
-      }
-
-      if ($present == 1 && $m1_flag == 1 && $slash_flag == 1) {
-        $arr.num0 = false;
-        $arr.num1 = false;
-        $arr.num2 = false;
-        $arr.slash = false;
-      }
-
-      if ($present >= 2 && $m1_flag == 1 && $slash_flag == 1) {
-        console.log("flag /" + $m1_flag);
-        $arr.slash = false;
-      }
-
-      if ($present == /\d/ && $m2_flag == 1 && $slash_flag == 1) {
-        $arr.slash = false;
-      }
-
-      if ($present == '/' && $slash_flag == 2 && $d1_flag == 0) {
-        $arr.num0 = false;
-        $arr.num1 = false;
-        $arr.num2 = false;
-        $arr.num3 = false;
-        $arr.num4 = false;
-        $arr.num5 = false;
-        $arr.num6 = false;
-        $arr.num7 = false;
-        $arr.num8 = false;
-        $arr.num9 = false;
-      }
-
-      if (/\d/.test($present) && $slash_flag == 2 && $d1_flag == 1) {
-        $arr.to = false;
-        $arr.plus = false;
-        $arr.sub = false;
-        if ($present == 0) {
+        if (/\d/.test($present) && $slash_flag == 0) {
+          $arr.num0 = false;
+          $arr.num1 = false;
+          $arr.num2 = false;
+          $arr.num3 = false;
+          $arr.num4 = false;
+          $arr.num5 = false;
+          $arr.num6 = false;
+          $arr.num7 = false;
+          $arr.num8 = false;
+          $arr.num9 = false;
+          $arr.slash = false;
+        }
+        if ($present == '/' && $m1_flag == 0 && $slash_flag == 1) {
+          $arr.num0 = false;
           $arr.num1 = false;
           $arr.num2 = false;
           $arr.num3 = false;
@@ -254,7 +203,38 @@ app.factory('enabled',function(){
           $arr.num9 = false;
 
         }
-        if ($present == 1) {
+
+        if ($present == 0 && $m1_flag == 1 && $slash_flag == 1) {
+          $arr.num0 = false;
+          $arr.num1 = false;
+          $arr.num2 = false;
+          $arr.num3 = false;
+          $arr.num4 = false;
+          $arr.num5 = false;
+          $arr.num6 = false;
+          $arr.num7 = false;
+          $arr.num8 = false;
+          $arr.num9 = false;
+          $arr.slash = false;
+        }
+
+        if ($present == 1 && $m1_flag == 1 && $slash_flag == 1) {
+          $arr.num0 = false;
+          $arr.num1 = false;
+          $arr.num2 = false;
+          $arr.slash = false;
+        }
+
+        if ($present >= 2 && $m1_flag == 1 && $slash_flag == 1) {
+          console.log("flag /" + $m1_flag);
+          $arr.slash = false;
+        }
+
+        if ($present == /\d/ && $m2_flag == 1 && $slash_flag == 1) {
+          $arr.slash = false;
+        }
+
+        if ($present == '/' && $slash_flag == 2 && $d1_flag == 0) {
           $arr.num0 = false;
           $arr.num1 = false;
           $arr.num2 = false;
@@ -266,47 +246,85 @@ app.factory('enabled',function(){
           $arr.num8 = false;
           $arr.num9 = false;
         }
-        if ($present == 2) {
-          $arr.num0 = false;
-          $arr.num1 = false;
-          $arr.num2 = false;
-          $arr.num3 = false;
-          $arr.num4 = false;
-          $arr.num5 = false;
-          $arr.num6 = false;
-          $arr.num7 = false;
-          $arr.num8 = false;
 
-          $tempDate = $string + '9';
-          var d = new Date($tempDate);
-          if (d) {
+        if (/\d/.test($present) && $slash_flag == 2 && $d1_flag == 1) {
+          console.log("oooooooooooooomad");
+          if ($present == 0) {
+            $arr.num1 = false;
+            $arr.num2 = false;
+            $arr.num3 = false;
+            $arr.num4 = false;
+            $arr.num5 = false;
+            $arr.num6 = false;
+            $arr.num7 = false;
+            $arr.num8 = false;
+            $arr.num9 = false;
+
+          }
+          if ($present == 1) {
+            $arr.to = false;
+            $arr.plus = false;
+            $arr.sub = false;
+            $arr.num0 = false;
+            $arr.num1 = false;
+            $arr.num2 = false;
+            $arr.num3 = false;
+            $arr.num4 = false;
+            $arr.num5 = false;
+            $arr.num6 = false;
+            $arr.num7 = false;
+            $arr.num8 = false;
             $arr.num9 = false;
           }
-        }
-
-
-        if ($present == 3) {
-          $tempDate1 = $string + '0';
-          var d = new Date($tempDate);
-          if (d) {
+          if ($present == 2) {
+            $arr.to = false;
+            $arr.plus = false;
+            $arr.sub = false;
             $arr.num0 = false;
-          }
-
-          $tempDate2 = $string + '1';
-          var d = new Date($tempDate);
-          if (d) {
             $arr.num1 = false;
-          }
-        }
-        if ($d2_flag == 1) {
+            $arr.num2 = false;
+            $arr.num3 = false;
+            $arr.num4 = false;
+            $arr.num5 = false;
+            $arr.num6 = false;
+            $arr.num7 = false;
+            $arr.num8 = false;
 
+            $tempDate = $string + '9';
+            var d = new Date($tempDate);
+            if (d) {
+              $arr.num9 = false;
+            }
+          }
+
+
+          if ($present == 3) {
+            $arr.to = false;
+            $arr.plus = false;
+            $arr.sub = false;
+            $tempDate1 = $string + '0';
+            var d = new Date($tempDate);
+            if (d) {
+              $arr.num0 = false;
+            }
+
+            $tempDate2 = $string + '1';
+            var d = new Date($tempDate);
+            if (d) {
+              $arr.num1 = false;
+            }
+          }
+          if ($d2_flag == 1) {
+
+          }
+          $d1_flag++;
         }
-        $d1_flag++;
       }
     }
   };
 
   //========= Piece Enable=====================
+  var flag=1;
   var year=0;
   var month=0;
   var week=0;
@@ -314,14 +332,16 @@ app.factory('enabled',function(){
   var hour=0;
   var minute=0;
   var second=0;
-  var t='';
+  var t='0';
   output.reg_piece=function($arr,$temp,$present)
   {
     var c=$temp + $present;
     console.log("c = " + c);
-    if (/^(?:\d{1,8})$/.test($present)) {
+    console.log("T start = " + t);
+    if (/(\d{1,8})$/.test($present) && flag) {
       //$scope.main_temp = $scope.temp + $scope.present;
       t+=$present;
+      console.log("t3="+t);
       $arr.num0 = false;
       $arr.num1 = false;
       $arr.num2 = false;
@@ -337,10 +357,12 @@ app.factory('enabled',function(){
       console.log("year = "+year);
       return 1;
     }
-    else if($present == 'y' | $present == 'mon' | $present =='w' |  $present == 'd' |  $present == 'h' | $present == 'min' | $present == 'sec')
+    else if($present == 'y' || $present == 'mon' || $present =='w' ||  $present == 'd' ||  $present == 'h' || $present == 'min' || $present == 'sec')
     {
+      console.log("t1="+t);
       //Save t Then Reset it!
-      t='';
+      t='0';
+      console.log("t2="+t);
       if($present=="y") {
         year=1;
       }if($present=="mon") {
@@ -374,17 +396,18 @@ app.factory('enabled',function(){
       return 2;
     }
     else{
-      year=1;
-      month=1;
-      week=1;
-      day=1;
-      hour=1;
+      flag = 0;
+      year = 1;
+      month = 1;
+      week = 1;
+      day = 1;
+      hour = 1;
       second = 1;
-      minute=1;
+      minute = 1;
       return 0;
     }
   };
-var check_stamp= function ($arr){
+  var check_stamp= function ($arr){
     if(year==0)
     {
       $arr.year = false;
@@ -407,7 +430,7 @@ var check_stamp= function ($arr){
     {
       $arr.sec = false;
     }
-  }
+  };
   //=============Return============
   return output;
 

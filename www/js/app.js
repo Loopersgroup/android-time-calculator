@@ -19,7 +19,7 @@ app.run(function($ionicPlatform) {
     }
   });
 })
-app.controller('basic', function($scope,regex,enabled,difinition){
+app.controller('basic', function($scope,regex,enabled,difinition,modes){
   $scope.arr={
     num1:false,
     num2:false,
@@ -49,7 +49,6 @@ app.controller('basic', function($scope,regex,enabled,difinition){
   };
   //   $scope.matrix();
   $scope.number='';
-  console.log($scope.number);
   //time_reg($scope.number);
   //date_reg($scope.number);
   $scope.temp='';
@@ -126,7 +125,6 @@ app.controller('basic', function($scope,regex,enabled,difinition){
 
   $scope.check=function($s)
   {
-    console.log("s="+$s);
     disAll();
     var t = regex.time_reg($scope.arr,$scope.number,$s);
     var d = regex.date_reg($scope.number,$s);
@@ -136,32 +134,10 @@ app.controller('basic', function($scope,regex,enabled,difinition){
       console.log("d=1,"+$s);
       enabled.dateEnabled($scope.arr,$scope.number,$s)
     }
-    //if(p)
-    //{
-    //  console.log("p==1");
-    //}
-    if(t)
-    {
-      console.log("t=1");
-    }
+
     $scope.num($s);
-    if(t==2)
-    {
 
-    }
-    if(t)
-    {
-
-    }
-      if(t/*|d*/)
-      {
-        $scope.temp+=$s;
-      }
-      else
-      {
-        console.log("false");
-      }
-  }
+  };
 
   //========= Disable All============================
   var disAll=function()
