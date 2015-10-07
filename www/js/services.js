@@ -36,6 +36,7 @@ app.factory('modes',function()
 
       year:0,
       month:0,
+      week:0,
       day:0,
       hour:0,
       minute:0,

@@ -701,94 +701,116 @@ app.factory('enabled',function(modes){
   var flag_dot=1;
   output.reg_piece=function($arr,$temp,$present)
   {
-    var c=$temp + $present;
-    console.log("c = " + c);
-    console.log("T start = " + t);
-    if (/(\d{1,8})$/.test($present) && flag) {
-      //$scope.main_temp = $scope.temp + $scope.present;
-      t+=$present;
-      console.log("t3="+t);
-      $arr.num0 = false;
-      $arr.num1 = false;
-      $arr.num2 = false;
-      $arr.num3 = false;
-      $arr.num4 = false;
-      $arr.num5 = false;
-      $arr.num6 = false;
-      $arr.num7 = false;
-      $arr.num8 = false;
-      $arr.num9 = false;
-      if(flag_dot==1)
-        $arr.dot = false;
-      check_stamp($arr);
-      console.log("year = "+year);
-      return 1;
-    }
-    else if($present=='.')
+    if($present == '<=')
     {
-      flag_dot = 0;
-      $arr.num0 = false;
-      $arr.num1 = false;
-      $arr.num2 = false;
-      $arr.num3 = false;
-      $arr.num4 = false;
-      $arr.num5 = false;
-      $arr.num6 = false;
-      $arr.num7 = false;
-      $arr.num8 = false;
-      $arr.num9 = false;
+      t = t.replace(/.$/,"");
     }
-    else if($present == 'y' || $present == 'mon' || $present =='w' ||  $present == 'd' ||  $present == 'h' || $present == 'min' || $present == 'sec')
+    else if($present == 'c')
     {
-      flag_dot = 1;
-      console.log("t1="+t);
-      //Save t Then Reset it!
       t='0';
-      console.log("t2="+t);
-      if($present=="y") {
-        year=1;
-      }if($present=="mon") {
-      month=1;
-    }if($present=="w") {
-      week=1;
-    }if($present=="d") {
-      day=1;
-    }if($present=="h") {
-      hour=1;
-    }if($present=="min") {
-      minute=1;
-    }if($present=="sec") {
-      second = 1;
     }
-      $arr.num0 = false;
-      $arr.num1 = false;
-      $arr.num2 = false;
-      $arr.num3 = false;
-      $arr.num4 = false;
-      $arr.num5 = false;
-      $arr.num6 = false;
-      $arr.num7 = false;
-      $arr.num8 = false;
-      $arr.num9 = false;
-      $arr.plus = false;
-      $arr.sub = false;
-      $arr.div = false;
-      $arr.multi = false;
-      console.log("year = "+year);
-      return 2;
-    }
-    else{
-      flag = 0;
-      year = 1;
-      month = 1;
-      week = 1;
-      day = 1;
-      hour = 1;
-      second = 1;
-      minute = 1;
-      return 0;
+    else {
+      var c = $temp + $present;
+      console.log("c = " + c);
+      console.log("T start = " + t);
+      if (/(\d{1,8})$/.test($present) && flag) {
+        //$scope.main_temp = $scope.temp + $scope.present;
+        t += $present;
+        console.log("t3=" + t);
+        $arr.num0 = false;
+        $arr.num1 = false;
+        $arr.num2 = false;
+        $arr.num3 = false;
+        $arr.num4 = false;
+        $arr.num5 = false;
+        $arr.num6 = false;
+        $arr.num7 = false;
+        $arr.num8 = false;
+        $arr.num9 = false;
+        if (flag_dot == 1)
+          $arr.dot = false;
+        check_stamp($arr);
+        console.log("year = " + year);
+        return 1;
+      }
+      else if ($present == '.') {
+        flag_dot = 0;
+        $arr.num0 = false;
+        $arr.num1 = false;
+        $arr.num2 = false;
+        $arr.num3 = false;
+        $arr.num4 = false;
+        $arr.num5 = false;
+        $arr.num6 = false;
+        $arr.num7 = false;
+        $arr.num8 = false;
+        $arr.num9 = false;
+      }
+      else if ($present == 'y' || $present == 'mon' || $present == 'w' || $present == 'd' || $present == 'h' || $present == 'min' || $present == 'sec') {
+        flag_dot = 1;
+        t= t.substr(1, t.length);
+        console.log("t1=" + t);
+        //Save t Then Reset it!===>> Done
+        if ($present == "y") {
+          year = 1;
+          modes.Mode_Piece.year=t;
+        }
+        if ($present == "mon") {
+          month = 1;
+          modes.Mode_Piece.month=t;
+        }
+        if ($present == "w") {
+          week = 1;
+          modes.Mode_Piece.week=t;
+        }
+        if ($present == "d") {
+          day = 1;
+          modes.Mode_Piece.day=t;
+        }
+        if ($present == "h") {
+          hour = 1;
+          modes.Mode_Piece.hour=t;
+        }
+        if ($present == "min") {
+          minute = 1;
+          modes.Mode_Piece.minute=t;
+        }
+        if ($present == "sec") {
+          second = 1;
+          modes.Mode_Piece.second=t;
+        }
+        t='0';
+        $arr.num0 = false;
+        $arr.num1 = false;
+        $arr.num2 = false;
+        $arr.num3 = false;
+        $arr.num4 = false;
+        $arr.num5 = false;
+        $arr.num6 = false;
+        $arr.num7 = false;
+        $arr.num8 = false;
+        $arr.num9 = false;
+        $arr.plus = false;
+        $arr.sub = false;
+        $arr.div = false;
+        $arr.multi = false;
+        console.log("year = " + year);
+        return 2;
+      }
+      else {
+        flag = 0;
+        year = 1;
+        month = 1;
+        week = 1;
+        day = 1;
+        hour = 1;
+        second = 1;
+        minute = 1;
+        return 0;
+      }
     }
   };
+
   var check_stamp= function ($arr){
     if(year==0)
     {
@@ -814,13 +836,12 @@ app.factory('enabled',function(modes){
     }
   };
 
-
   //=============Int Enabled =================
   output.intEnabled = function($arr,$string)
   {
     if (($string.search("y")>0 || $string.search("mon")>0 || $string.search("w")>0 || $string.search("d")>0 ||
       $string.search("h")>0 || $string.search("min")>0 || $string.search("sec")>0 || $string.search(":")>0 || $string.search("\\+")>0
-      || $string.search("-")>0 || $string.search("%")>0 || $string.search("\\*")>0))
+      || $string.search("-")>0 || $string.search("%")>0 || $string.search("\\*")>0 || $string.search("/")>0 || $string =="") )
     {
 
     }
@@ -832,7 +853,7 @@ app.factory('enabled',function(modes){
       output.changeStatus($arr,'/');
       output.changeStatus($arr,'*');
       output.changeStatus($arr,'.');
-
+      modes.Mode_SimpleNum.num=$string;
     }
 
   }
