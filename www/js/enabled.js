@@ -141,6 +141,10 @@ app.factory('enabled',function(modes){
     {
       $arr.div=false;
     }
+    else if($s=='.')
+    {
+      $arr.dot=false;
+    }
     //=================
   };
   //========Time Enable======================
@@ -226,7 +230,7 @@ app.factory('enabled',function(modes){
         $arr.num3=true;
       }
 
-      return 1;
+
 
     }
     else if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])$/.test(c))
@@ -234,23 +238,23 @@ app.factory('enabled',function(modes){
       console.log("4");
       var index=$num.search('/');
       modes.Mode_Date.month=$num.substr(index+1,$num.length);
-      return 1;
+
     }
     else if(/^(?:\d{1,4})\/0$/.test(c))
     {
       console.log("3");
-      return 1;
+
     }
     else if(/^(?:\d{1,4})\/$/.test(c))
     {
       console.log("1")
-      return 1;
+
     }
     else if(/^(?:\d{1,4})$/.test(c))
     {
      modes.Mode_Date.year=$num;
       console.log("22"+ modes.Mode_Date.year);
-      return 1;
+
     }
     else
     {
@@ -820,7 +824,7 @@ app.factory('enabled',function(modes){
   {
     if (($string.search("y")>0 || $string.search("mon")>0 || $string.search("w")>0 || $string.search("d")>0 ||
       $string.search("h")>0 || $string.search("min")>0 || $string.search("sec")>0 || $string.search(":")>0 || $string.search("\\+")>0
-      || $string.search("-")>0 || $string.search("%")>0 || $string.search("\\*")>0))
+      || $string.search("-")>0 || $string.search("%")>0 || $string.search("\\*")>0 || $string.search("/")>0 || $string =="") )
     {
 
     }
@@ -831,11 +835,17 @@ app.factory('enabled',function(modes){
       output.changeStatus($arr,'-');
       output.changeStatus($arr,'/');
       output.changeStatus($arr,'*');
-      output.changeStatus($arr,'.');
+
+if($string.search('\\.')<0) {
+
+  output.changeStatus($arr, '.');
+  modes.Mode_SimpleNum.num = $string;
+}
+
 
     }
 
-  }
+  };
   //=============Return=======================
   return output;
 

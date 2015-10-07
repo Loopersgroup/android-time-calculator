@@ -125,9 +125,41 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes){
 
 //--------------------------------------------------------------------------------------------
 
+  //$scope.check=function($s)
+  //{
+  //  disAll();
+  //  if($s=='<=')
+  //  {
+  //    var temp_check=$scope.number.substr($scope.number.length - 1,$scope.number.length);
+  //    if(/\d/.test(temp_check) || temp_check==":" || temp_check == "/")
+  //    {
+  //
+  //      $scope.number = $scope.number.replace(/.$/, "");
+  //      console.log("test =" + $scope.number);
+  //      //enabled.dateEnabled($scope.check,$scope.arr,$scope.number,$s);
+  //      var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
+  //      console.log("temp_s =" + temp_s);
+  //      $scope.number = $scope.number.replace(/.$/, "");
+  //      $scope.check(temp_s);
+  //    }
+  //    else
+  //    {
+  //      console.log("more than 1 character");
+  //    }
+  //  }
+  //  else {
+  //    $scope.num($s);
+  //    //console.log("pre =" + $scope.pre_number);
+  //    //var t = enabled.timeEnabled($scope.arr, $scope.number);
+  //    enabled.dateEnabled($scope.arr, $scope.number);
+  //    //var p = enabled.reg_piece($scope.arr, $scope.number, $s);
+  //    //enabled.intEnabled($scope.arr,$scope.number);
+  //    $scope.pre_number = $s;
+  //  }
+  //};
+
   $scope.check=function($s)
   {
-    disAll();
     if($s=='<=')
     {
       var temp_check=$scope.number.substr($scope.number.length - 1,$scope.number.length);
@@ -140,22 +172,29 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes){
         var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
         console.log("temp_s =" + temp_s);
         $scope.number = $scope.number.replace(/.$/, "");
-        $scope.check(temp_s);
+        enabled.reg_piece($scope.arr,$scope.number,'<=');
+        $s = temp_s;
+        //$scope.check(temp_s);
       }
       else
       {
         console.log("more than 1 character");
       }
     }
-    else {
-      $scope.num($s);
-      //console.log("pre =" + $scope.pre_number);
-      var t = enabled.timeEnabled($scope.arr, $scope.number);
-      enabled.dateEnabled($scope.arr, $scope.number);
-      var p = enabled.reg_piece($scope.arr, $scope.number, $s);
-      enabled.intEnabled($scope.arr,$scope.number)
-      $scope.pre_number = $s;
+    if($s=='c')
+    {
+      $scope.number = "";
+      $s = '';
     }
+    disAll();
+    $scope.num($s);
+    //console.log("pre =" + $scope.pre_number);
+    //var t = enabled.timeEnabled($scope.arr, $scope.number);
+    enabled.dateEnabled($scope.arr, $scope.number);
+    //var p = enabled.reg_piece($scope.arr, $scope.number, $s);
+    enabled.intEnabled($scope.arr,$scope.number);
+    $scope.pre_number = $s;
+
   };
 
   //========= Disable All============================
