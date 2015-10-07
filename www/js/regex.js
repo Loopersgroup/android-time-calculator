@@ -54,41 +54,41 @@ app.factory('regex',function(enabled)
   };
   factory.date_reg = function($num,$s)
   {
-    var c=$num+$s;
-    if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/0$/.test(c))
-    {
-      console.log("Zero First!");
-      return 1;
-    }
-    else if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))$/.test(c))
-    {
-      console.log("date_FULL");
-      return 2;
-    }
-    else if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/$/.test(c))
-    {
-      console.log("date4");
-      return 1;
-    }
-    else if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])$/.test(c))
-    {
-      console.log("date3");
-      return 1;
-    }
-    else if(/^(?:\d{1,4})\/$/.test(c))
-    {
-      console.log("date2");
-      return 1;
-    }
-    else if(/^(?:\d{1,4})$/.test(c))
-    {
-      console.log("date1");
-      return 1;
-    }
-    else {
-      console.log("date0");
-      return 0;
-    }
+      var c=$num+$s;
+      if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/0$/.test(c))
+      {
+        console.log("Zero First!");
+        return 1;
+      }
+      else if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))$/.test(c))
+      {
+        console.log("date_FULL");
+        return 2;
+      }
+      else if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/$/.test(c))
+      {
+        console.log("date4");
+        return 1;
+      }
+      else if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])$/.test(c))
+      {
+        console.log("date3");
+        return 1;
+      }
+      else if(/^(?:\d{1,4})\/$/.test(c))
+      {
+        console.log("date2");
+        return 1;
+      }
+      else if(/^(?:\d{1,4})$/.test(c))
+      {
+        console.log("date1");
+        return 1;
+      }
+      else {
+        console.log("date0");
+        return 0;
+      }
   };
   return factory;
 });

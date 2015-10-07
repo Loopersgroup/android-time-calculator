@@ -10,9 +10,9 @@ app.factory('modes',function()
 
     output.Mode_Date={
 
-      year:0,
-      month:0,
-      day:0
+      year:'',
+      month:'',
+      day:''
 
     };
 
