@@ -6,8 +6,6 @@ app.factory('modes',function()
 {
     var output={};
 
-
-
     output.Mode_Date={
 
       year:'',
@@ -50,8 +48,6 @@ app.factory('modes',function()
       second:0
 
     };
-
-    //output.time_enable()
-    return output;
+   return output;
 
 });
