@@ -19,7 +19,23 @@ app.run(function($ionicPlatform) {
     }
   });
 });
-app.controller('basic', function($scope,regex,enabled,difinition,modes){
+app.controller('basic', function($scope,regex,enabled,difinition,modes,op){
+
+                                          //========== Calculation ======================
+  $scope.operation = function ($s)
+  {
+    if($s == '+')
+    {
+      op.plus();
+    }
+
+  }
+
+
+
+
+
+                                          //========= Input ===========================
   $scope.arr={
     num1:false,
     num2:false,
@@ -322,4 +338,5 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes){
     $scope.arr.dot=true;
     $scope.arr.colon=true;
   }
+
 });
