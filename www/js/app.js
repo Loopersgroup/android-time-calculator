@@ -19,14 +19,14 @@ app.run(function($ionicPlatform) {
     }
   });
 });
-app.controller('basic', function($scope,regex,enabled,difinition,modes,op){
-
+app.controller('basic', function($scope,regex,enabled,difinition,modes,operation){
+  enabled.reset_able();
                                           //========== Calculation ======================
   $scope.operation = function ($s)
   {
     if($s == '+')
     {
-      op.plus();
+      operation.plus();
     }
 
   }
@@ -301,11 +301,20 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,op){
     console.log("Test back =" + $scope.number)
       $scope.num($s);
       //console.log("pre =" + $scope.pre_number);
-      var t = enabled.timeEnabled($scope.arr, $scope.number);
-      enabled.dateEnabled($scope.arr, $scope.number);
-      var p = enabled.reg_piece($scope.arr, $scope.number, $s);
-      enabled.intEnabled($scope.arr,$scope.number)
+    if(enabled.able[1])
+      modes.input_res[1] = enabled.reg_piece($scope.arr, $scope.number, $s);
+
+    if(enabled.able[2])
+      modes.input_res[2] = enabled.timeEnabled($scope.arr, $scope.number);
+
+    if(enabled.able[3])
+      modes.input_res[3] = enabled.dateEnabled($scope.arr, $scope.number);
+
+    if(enabled.able[5])
+      modes.input_res[5] = enabled.intEnabled($scope.arr,$scope.number);
+
       $scope.pre_number = $s;
+    console.log(" Time REs =" + modes.input_res[2]);
 
   };
 

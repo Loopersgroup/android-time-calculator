@@ -4,6 +4,14 @@
 app.factory('enabled',function(modes){
   var output = {};
 
+  output.able = Array(6);
+  output.reset_able = function()
+  {
+    for (var i=0;i<6;i++)
+      output.able[i]=1;
+  }
+
+  //===========================
 
   var time_reg= function($arr,$num,$s)
   {
@@ -167,6 +175,7 @@ app.factory('enabled',function(modes){
     {
       $arr.colon=false;
     }
+    return com;
   };
 
   //=========== Date Enabled 3=================
@@ -222,6 +231,7 @@ app.factory('enabled',function(modes){
           $arr.num1 = true;
         }
       }
+      return 2;
     }
     else if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/$/.test(c))
     {
@@ -888,7 +898,7 @@ app.factory('enabled',function(modes){
       $string.search("h")>0 || $string.search("min")>0 || $string.search("sec")>0 || $string.search(":")>0 || $string.search("\\+")>0
       || $string.search("-")>0 || $string.search("%")>0 || $string.search("\\*")>0 || $string.search("/")>0 || $string =="") )
     {
-
+      return 0;
     }
     else{
       for(var i=0;i<=9;i++)
@@ -899,6 +909,7 @@ app.factory('enabled',function(modes){
       output.changeStatus($arr,'*');
       output.changeStatus($arr,'.');
       modes.Mode_SimpleNum.num=$string;
+      return 2;
     }
 
   }
