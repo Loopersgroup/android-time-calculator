@@ -270,6 +270,10 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes){
         enabled.back_piece("year");
         $s = temp_s;
       }
+      else
+      {
+        $s="";
+      }
     }
     if($s=='C')
     {
