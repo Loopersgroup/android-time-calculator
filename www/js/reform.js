@@ -68,18 +68,17 @@ app.factory('reform',function(modes)
       modes.Mode_Piece.month -= ((modes.Mode_Piece.month)%1);
     }
 
-
     if (modes.Mode_Piece.day >=0){
-      modes.Mode_Piece.hour+=(((modes.Mode_Piece.day)%1)*24);
-      modes.Mode_Piece.day-=((modes.Mode_Piece.day)%1);
+      modes.Mode_Piece.hour += (((modes.Mode_Piece.day)%1)*24);
+      modes.Mode_Piece.day -= ((modes.Mode_Piece.day)%1);
     }
     if (modes.Mode_Piece.hour >=0){
-      modes.Mode_Piece.minute+=((modes.Mode_Piece.hour)%1)*60;
-      modes.Mode_Piece.hour-=((modes.Mode_Piece.hour)%1);
+      modes.Mode_Piece.minute += ((modes.Mode_Piece.hour)%1)*60;
+      modes.Mode_Piece.hour -= ((modes.Mode_Piece.hour)%1);
     }
     if (modes.Mode_Piece.minute >=0){
-      modes.Mode_Piece.second+=((modes.Mode_Piece.minute)%1)*60;
-      modes.Mode_Piece.minute-=((modes.Mode_Piece.minute)%1);
+      modes.Mode_Piece.second += ((modes.Mode_Piece.minute)%1)*60;
+      modes.Mode_Piece.minute -= ((modes.Mode_Piece.minute)%1);
     }
     if (modes.Mode_Piece.second >=0){
       modes.Mode_Piece.second-=((modes.Mode_Piece.second)%1);
@@ -90,43 +89,18 @@ app.factory('reform',function(modes)
       modes.Mode_Piece.second = m % 60;
       modes.Mode_Piece.minute += ( m - modes.Mode_Piece.second) / 60;
     }
-    else {
-      m=modes.Mode_Piece.second;
-      modes.Mode_Piece.second=60+modes.Mode_Piece.second%60;
-      modes.Mode_Piece.minute += ( m-(m)%60) / 60;
-      if(m % 60 !=0)
-      {
-        modes.Mode_Piece.minute -=1;
-      }
-    }
+
     if (modes.Mode_Piece.minute >= 0) {
       m = modes.Mode_Piece.minute;
       modes.Mode_Piece.minute = m % 60;
       modes.Mode_Piece.hour += ( m - modes.Mode_Piece.minute) / 60;
     }
-    else {
-      m=modes.Mode_Piece.minute;
-      modes.Mode_Piece.minute=60+((modes.Mode_Piece.minute)%60);
-      modes.Mode_Piece.hour += ( m-(m)%60) / 60;
-      if(m % 60 !=0)
-      {
-        modes.Mode_Piece.hour -=1;
-      }
-    }
+
     if(modes.Mode_Piece.hour>=0) {
       m = modes.Mode_Piece.hour;
       modes.Mode_Piece.hour = m % 24;
       modes.Mode_Piece.day += ( m - modes.Mode_Piece.hour) / 24;
     }
 
-    else {
-      m=modes.Mode_Piece.hour;
-      modes.Mode_Piece.hour=24+modes.Mode_Piece.hour%24;
-      modes.Mode_Piece.day += ( m-(m)%24) / 24;
-      if(m % 24 !=0)
-      {
-        modes.Mode_Piece.day -=1;
-      }
-    }
   }
-})
+});
