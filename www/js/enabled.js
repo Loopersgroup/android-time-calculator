@@ -36,6 +36,7 @@ app.factory('enabled',function(modes){
     }
     else if(/^(?:[01]?\d|2[0-3])$/.test(c))
     {
+
       return 1;
     }
     //else if(/\d{1}/.test(c))
@@ -175,6 +176,39 @@ app.factory('enabled',function(modes){
     {
       $arr.colon=false;
     }
+
+    var c=$string;
+    //var path=/([0-1][0-9])|2[0-3]/;
+    //var path=/(00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23)/;
+    if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:(0|1|2|3|4|5)?\d$/.test(c))
+    {
+      var index1=$string.search('/');
+      var tmp;
+      tmp=$string.substr(index1+1,$string.length);
+      var index2=tmp.search('/');
+      modes.Mode_Time.second=tmp.substr(index2+1,tmp.length);
+
+      return 2;
+    }
+    else if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:$/.test(c))
+    {
+      return 1;
+    }
+    else if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d$/.test(c))
+    {
+      var index=$string.search('/');
+      modes.Mode_Time.minute=$string.substr(index+1,$string.length);
+      return 1;
+    }
+    else if(/^(?:[01]?\d|2[0-3]):$/.test(c))
+    {
+      return 1;
+    }
+    else if(/^(?:[01]?\d|2[0-3])$/.test(c))
+    {
+      modes.Mode_Time.hour = c;
+      return 1;
+    }
     return com;
   };
 
@@ -249,18 +283,15 @@ app.factory('enabled',function(modes){
     }
     else if(/^(?:\d{1,4})\/0$/.test(c))
     {
-      console.log("3");
       return 1;
     }
     else if(/^(?:\d{1,4})\/$/.test(c))
     {
-      console.log("1")
       return 1;
     }
     else if(/^(?:\d{1,4})$/.test(c))
     {
      modes.Mode_Date.year=$num;
-      console.log("22"+ modes.Mode_Date.year);
       return 1;
     }
     else

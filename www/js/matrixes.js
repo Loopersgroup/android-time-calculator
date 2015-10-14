@@ -17,7 +17,7 @@ app.factory('difinition',function()
     factory.plusArray[2][4] = 0;
     factory.plusArray[2][5] = 0;
     factory.plusArray[3][1] = 4;
-    factory.plusArray[3][2] = 0;
+    factory.plusArray[3][2] = 4;
     factory.plusArray[3][3] = 0;
     factory.plusArray[3][4] = 0;
     factory.plusArray[3][5] = 0;

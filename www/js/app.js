@@ -293,6 +293,7 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     }
     if($s=='C')
     {
+      enabled.reset_able();
       $scope.number = "";
       $s = '';
       enabled.reg_piece($scope.arr,$scope.number,'c');
