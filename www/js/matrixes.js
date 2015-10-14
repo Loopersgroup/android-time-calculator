@@ -6,9 +6,9 @@ app.factory('difinition',function()
   var i;
   var factory={};
   {
-    factory.plusArray = new Array(5);
-    for (i = 0; i < 5; i++)
-      factory.plusArray[i] = new Array(5);
+    factory.plusArray = new Array(6);
+    for (i = 0; i < 6; i++)
+      factory.plusArray[i] = new Array(6);
     factory.plusArray[1][1] = 1;
     factory.plusArray[1][2] = 2;
     factory.plusArray[1][3] = 4;
@@ -36,9 +36,9 @@ app.factory('difinition',function()
     factory.plusArray[5][5] = 5;
 
     ////////////////////////////////////////////////////////////////////////
-    factory.minusArray = new Array(5);
-    for (i = 0; i < 5; i++)
-      factory.minusArray[i] = new Array(5);
+    factory.minusArray = new Array(6);
+    for (i = 0; i < 6; i++)
+      factory.minusArray[i] = new Array(6);
     factory.minusArray[1][1] = 1;
     factory.minusArray[1][2] = 0;
     factory.minusArray[1][3] = 0;
@@ -66,9 +66,9 @@ app.factory('difinition',function()
     factory.minusArray[5][5] = 5;
 
     ///////////////////////////////////////////////////////////////////
-    factory.ToArray = new Array(5);
-    for (i = 0; i < 5; i++)
-      factory.ToArray[i] = new Array(5);
+    factory.ToArray = new Array(6);
+    for (i = 0; i < 6; i++)
+      factory.ToArray[i] = new Array(6);
     factory.ToArray[1][1] = 0;
     factory.ToArray[1][2] = 0;
     factory.ToArray[1][3] = 0;
@@ -96,9 +96,9 @@ app.factory('difinition',function()
     factory.ToArray[5][5] = 0;
 
     ////////////////////////////////////////////////////////
-    factory.multiplyArray = new Array(5);
-    for (i = 0; i < 5; i++)
-      factory.multiplyArray[i] = new Array(5);
+    factory.multiplyArray = new Array(6);
+    for (i = 0; i < 6; i++)
+      factory.multiplyArray[i] = new Array(6);
     factory.multiplyArray[1][1] = 0;
     factory.multiplyArray[1][2] = 0;
     factory.multiplyArray[1][3] = 0;
@@ -126,9 +126,9 @@ app.factory('difinition',function()
     factory.multiplyArray[5][5] = 5;
 
     ////////////////////////////////////////////////////////
-    factory.divisionArray = new Array(5);
-    for (i = 0; i < 5; i++)
-      factory.divisionArray[i] = new Array(5);
+    factory.divisionArray = new Array(6);
+    for (i = 0; i < 6; i++)
+      factory.divisionArray[i] = new Array(6);
     factory.divisionArray[1][1] = 0;
     factory.divisionArray[1][2] = 0;
     factory.divisionArray[1][3] = 0;

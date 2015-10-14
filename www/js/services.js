@@ -12,43 +12,44 @@ app.factory('modes',function()
 
       year:'',
       month:'',
+      week:'',
       day:''
 
     };
 
-    output.Mode_Date_Time= {
+    output.Mode_DateTime= {
 
-      year:0,
-      month:0,
-      day:0,
-      hour:0,
-      minute:0,
-      second:0
+      year:'',
+      month:'',
+      week:'',
+      day:'',
+      hour:'',
+      minute:'',
+      second:''
     };
 
     output.Mode_SimpleNum= {
 
-      num:0
+      num:''
 
     };
 
     output.Mode_Piece={
 
-      year:0,
-      month:0,
-      week:0,
-      day:0,
-      hour:0,
-      minute:0,
-      second:0
+      year:'',
+      month:'',
+      week:'',
+      day:'',
+      hour:'',
+      minute:'',
+      second:''
 
     };
     output.Mode_Time={
 
-      day:0,
-      hour:0,
-      minute:0,
-      second:0
+      hour:'',
+      minute:'',
+      second:''
 
     };
 //////////////////////////////////////////
@@ -56,43 +57,44 @@ app.factory('modes',function()
 
     year:'',
     month:'',
+    week:'',
     day:''
 
   };
 
-  output.temp_Mode_Date_Time= {
+  output.temp_Mode_DateTime= {
 
-    year:0,
-    month:0,
-    day:0,
-    hour:0,
-    minute:0,
-    second:0
+    year:'',
+    month:'',
+    week:'',
+    day:'',
+    hour:'',
+    minute:'',
+    second:''
   };
 
   output.temp_Mode_SimpleNum= {
 
-    num:0
+    num:''
 
   };
 
   output.temp_Mode_Piece={
 
-    year:0,
-    month:0,
-    week:0,
-    day:0,
-    hour:0,
-    minute:0,
-    second:0
+    year:'',
+    month:'',
+    week:'',
+    day:'',
+    hour:'',
+    minute:'',
+    second:''
 
   };
   output.temp_Mode_Time={
 
-    day:0,
-    hour:0,
-    minute:0,
-    second:0
+    hour:'',
+    minute:'',
+    second:''
 
   };
     return output;
