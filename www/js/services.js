@@ -5,7 +5,7 @@
 app.factory('modes',function()
 {
     var output={};
-
+    output.input_res = Array(6);
 
 
     output.Mode_Date={
@@ -51,8 +51,50 @@ app.factory('modes',function()
       second:0
 
     };
+//////////////////////////////////////////
+  output.temp_Mode_Date={
 
-    //output.time_enable()
+    year:'',
+    month:'',
+    day:''
+
+  };
+
+  output.temp_Mode_Date_Time= {
+
+    year:0,
+    month:0,
+    day:0,
+    hour:0,
+    minute:0,
+    second:0
+  };
+
+  output.temp_Mode_SimpleNum= {
+
+    num:0
+
+  };
+
+  output.temp_Mode_Piece={
+
+    year:0,
+    month:0,
+    week:0,
+    day:0,
+    hour:0,
+    minute:0,
+    second:0
+
+  };
+  output.temp_Mode_Time={
+
+    day:0,
+    hour:0,
+    minute:0,
+    second:0
+
+  };
     return output;
 
 });

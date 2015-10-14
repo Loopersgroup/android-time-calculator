@@ -31,10 +31,6 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,op){
 
   }
 
-
-
-
-
                                           //========= Input ===========================
   $scope.arr={
     num1:false,
@@ -301,15 +297,15 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,op){
     console.log("Test back =" + $scope.number)
       $scope.num($s);
       //console.log("pre =" + $scope.pre_number);
-      var t = enabled.timeEnabled($scope.arr, $scope.number);
-      enabled.dateEnabled($scope.arr, $scope.number);
-      var p = enabled.reg_piece($scope.arr, $scope.number, $s);
-      enabled.intEnabled($scope.arr,$scope.number)
+      modes.input_res[2] = enabled.timeEnabled($scope.arr, $scope.number);
+      modes.input_res[3]=enabled.dateEnabled($scope.arr, $scope.number);
+      modes.input_res[1] = enabled.reg_piece($scope.arr, $scope.number, $s);
+      modes.input_res[5]=enabled.intEnabled($scope.arr,$scope.number)
       $scope.pre_number = $s;
 
   };
 
-  //========= Disable All============================
+  //======================== Disable All============================
   var disAll=function()
   {
     $scope.arr.num1=true;
