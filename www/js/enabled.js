@@ -200,6 +200,11 @@ app.factory('enabled',function(modes){
     {
       console.log("2");
       var end_date = $num.substr($num.length-1,$num.length);
+      if(end_date == 3 && modes.Mode_Date.month == 2)
+      {
+        $arr.num0 = true;
+        $arr.num1 = true;
+      }
       console.log("end date"+end_date)
       var index1=$num.search('/');
       var tmp;
@@ -221,10 +226,6 @@ app.factory('enabled',function(modes){
     else if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/$/.test(c))
     {
       console.log("3");
-      if(modes.Mode_Date.month==2)
-      {
-        $arr.num3=true;
-      }
 
       return 1;
 
@@ -699,15 +700,55 @@ app.factory('enabled',function(modes){
   var second=0;
   var t='0';
   var flag_dot=1;
-  output.reg_piece=function($arr,$temp,$present)
+  output.back_piece = function($string)
   {
-    if($present == '<=')
+    if($string == "num")
     {
       t = t.replace(/.$/,"");
     }
-    else if($present == 'c')
+    else if($string =="sec")
     {
+      second = 0;
+    }
+    else if($string =="min")
+    {
+      minute = 0;
+    }
+    else if($string =="hour")
+    {
+      hour = 0;
+    }
+    else if($string =="day")
+    {
+      day = 0;
+    }
+    else if($string =="week")
+    {
+      week = 0;
+    }
+    else if($string =="mon")
+    {
+      month = 0;
+    }
+    else if($string =="year")
+    {
+      year = 0;
+    }
+  };
+  output.reg_piece=function($arr,$temp,$present)
+  {
+    if($present == 'c')
+    {
+      flag=1;
+      year=0;
+      month=0;
+      week=0;
+      day=0;
+      hour=0;
+      minute=0;
+      second=0;
       t='0';
+      flag_dot=1;
     }
     else {
       var c = $temp + $present;
@@ -796,6 +837,10 @@ app.factory('enabled',function(modes){
         $arr.multi = false;
         console.log("year = " + year);
         return 2;
+      }
+      else if($present=='')
+      {
+
       }
       else {
         flag = 0;

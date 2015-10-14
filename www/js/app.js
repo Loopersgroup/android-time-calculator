@@ -18,7 +18,7 @@ app.run(function($ionicPlatform) {
       StatusBar.styleDefault();
     }
   });
-})
+});
 app.controller('basic', function($scope,regex,enabled,difinition,modes){
   $scope.arr={
     num1:false,
@@ -54,6 +54,8 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes){
   //time_reg($scope.number);
   //date_reg($scope.number);
   $scope.temp='';
+
+  var reform_temp;
   $scope.num=function($n)
   {
     $scope.number += $n;
@@ -123,37 +125,160 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes){
 //    }
 //  };
 
+  //======================== piece =============
+ $scope.piece_reform = function ()
+  {
+    var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
+    if(temp_s == 'c') {
+      $scope.number = $scope.number.replace(/.$/, "");
+      $scope.number = $scope.number.replace(/.$/, "");
+      $scope.number = $scope.number.replace(/.$/, "");
+      reform_temp = 'sec';
+      enabled.back_piece("sec");
+    }
+    else if(temp_s == 'n')
+    {
+      $scope.number = $scope.number.replace(/.$/, "");
+      var s= $scope.number.substr($scope.number.length - 1, $scope.number.length);
+      if(s == 'i')
+      {
+        reform_temp = 'min';
+        enabled.back_piece("min");
+      }
+      else if(s == 'o') {
+        reform_temp = 'mon';
+        enabled.back_piece("mon");
+      }
+      $scope.number = $scope.number.replace(/.$/, "");
+      $scope.number = $scope.number.replace(/.$/, "");
+    }
+    else if(temp_s == 'd')
+    {
+      $scope.number = $scope.number.replace(/.$/, "");
+      reform_temp = 'd';
+      enabled.back_piece("day");
+    }
+    else if(temp_s == 'w')
+    {
+      $scope.number = $scope.number.replace(/.$/,"");
+      enabled.back_piece("week");
+      reform_temp = 'w'
+    }
+    else if(temp_s == 'y')
+    {
+      $scope.number = $scope.number.replace(/.$/,"");
+      enabled.back_piece("year");
+      reform_temp = 'y';
+    }
+    else
+    {
+      $scope.number = $scope.number.replace(/.$/,"");
+      reform_temp = temp_s;
+    }
+  }
 //--------------------------------------------------------------------------------------------
 
-  $scope.check=function($s)
+  $scope.check = function($s)
   {
     if($s=='<=')
     {
       var temp_check=$scope.number.substr($scope.number.length - 1,$scope.number.length);
-      if(/\d/.test(temp_check) || temp_check==":" || temp_check == "/")
+      console.log("temp-check = " + temp_check);
+      if(/\d/.test(temp_check) || temp_check==":" || temp_check == "/" || temp_check==".")
       {
+        if(temp_check=='.')
+        {
 
+        }
         $scope.number = $scope.number.replace(/.$/, "");
         console.log("test =" + $scope.number);
         //enabled.dateEnabled($scope.check,$scope.arr,$scope.number,$s);
-        var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
-        console.log("temp_s =" + temp_s);
-        $scope.number = $scope.number.replace(/.$/, "");
-        enabled.reg_piece($scope.arr,$scope.number,'<=');
-        $s = temp_s;
+        //var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
+        //console.log("temp_s =" + temp_s);
+        //$scope.number = $scope.number.replace(/.$/, "");
+        //enabled.reg_piece($scope.arr,$scope.number,'<=');
+        enabled.back_piece("num");
+        $scope.piece_reform();
+        $s=reform_temp;
+        //$s = temp_s;
         //$scope.check(temp_s);
       }
-      else
+
+      else if(temp_check=='c')
       {
+        $scope.number = $scope.number.replace(/.$/, "");
+        $scope.number = $scope.number.replace(/.$/, "");
+        $scope.number = $scope.number.replace(/.$/, "");
+        var t= $scope.number.substr($scope.number.length-1,$scope.number.length);
+        $s = t;
+        $scope.number = $scope.number.replace(/.$/, "");
+        enabled.back_piece("sec");
         console.log("more than 1 character");
       }
+      else if(temp_check == 'n')
+      {
+        $scope.number = $scope.number.replace(/.$/, "");
+        var temp_h = $scope.number.substr($scope.number.length - 1, $scope.number.length);
+        if(temp_h == "i")
+        {
+          $scope.number = $scope.number.replace(/.$/, "");
+          $scope.number = $scope.number.replace(/.$/, "");
+          var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
+          $scope.number = $scope.number.replace(/.$/, "");
+          enabled.back_piece("min");
+          $s = temp_s;
+        }
+        else if (temp_h == 'o')
+        {
+          $scope.number = $scope.number.replace(/.$/, "");
+          $scope.number = $scope.number.replace(/.$/, "");
+          var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
+          $scope.number = $scope.number.replace(/.$/, "");
+          enabled.back_piece("mon");
+          $s = temp_s;
+        }
+      }
+      else if(temp_check == 'h')
+      {
+        $scope.number = $scope.number.replace(/.$/, "");
+        var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
+        $scope.number = $scope.number.replace(/.$/, "");
+        enabled.back_piece("hour");
+        $s = temp_s;
+      }
+      else if(temp_check == 'd')
+      {
+        $scope.number = $scope.number.replace(/.$/, "");
+        var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
+        $scope.number = $scope.number.replace(/.$/, "");
+        enabled.back_piece("day");
+        $s = temp_s;
+      }
+      else if(temp_check =='w')
+      {
+        $scope.number = $scope.number.replace(/.$/, "");
+        var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
+        $scope.number = $scope.number.replace(/.$/, "");
+        enabled.back_piece("week");
+        $s = temp_s;
+      }
+      else if(temp_check == 'y')
+      {
+        $scope.number = $scope.number.replace(/.$/, "");
+        var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
+        $scope.number = $scope.number.replace(/.$/, "");
+        enabled.back_piece("year");
+        $s = temp_s;
+      }
     }
-    if($s=='c')
+    if($s=='C')
     {
       $scope.number = "";
       $s = '';
+      enabled.reg_piece($scope.arr,$scope.number,'c');
     }
     disAll();
+    console.log("Test back =" + $scope.number)
       $scope.num($s);
       //console.log("pre =" + $scope.pre_number);
       var t = enabled.timeEnabled($scope.arr, $scope.number);

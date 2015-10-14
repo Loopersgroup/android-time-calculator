@@ -1,1 +1,67 @@
 /* Empty. Add your own CSS if you like */
+.btn
+{
+  width: 100%;
+  border:1px solid rgb(74,74,74);
+}
+
+.calc-btn-number
+{
+  background-color: rgba(74,144,226,1);
+  color:rgba(255,252,252,1);
+  border-radius: 2px;
+}
+
+.calc-btn-number:hover
+{
+  background-color: rgb(58,118,187);
+  border-radius:4px;
+  color:darkgray;
+}
+
+.calc-btn-stamp
+{
+  background-color: rgba(29,168,177,1);
+  color:rgba(255,252,252,1);
+  border-radius: 2px;
+}
+
+.calc-btn-stamp:hover
+{
+  background-color: rgb(26,141,148);
+  border-radius:3px;
+  color:darkgray;
+}
+
+.calc-btn-operator
+{
+  background-color: rgba(245,134,35,1);
+  color:rgba(255,252,252,1);
+  border-radius: 2px;
+}
+
+.calc-btn-operator:hover
+{
+  background-color: rgb(213,89,28);
+  border-radius:3px;
+  color:darkgray;
+
+}
+
+
+.calculator td
+{
+  padding:3px;
+}
+
+.result
+{
+  background-color: rgb(216,216,216);
+  border-radius: 6px;
+  height:30px;
+  width: 100%;
+  border:2px solid rgb(74,74,74);
+  color:darkslategrey;
+  font-size: x-small;
+  font-style: oblique;
+}
