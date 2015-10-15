@@ -82,15 +82,15 @@ var m;
   output.time_reform=function()
   {
 
-    console.log("eshghammmmmmmm");
+
     (modes.Mode_Time.second)=70;
     (modes.Mode_Time.hour)=50;
     (modes.Mode_Time.minute)=60;
 
 
-    console.log("honyyyyyyyyy1"+modes.Mode_Time.second);
-    console.log("honyyyyyyyyy2"+modes.Mode_Time.hour);
-    console.log("honyyyyyyyyy3"+modes.Mode_Time.minute);
+    console.log("h1"+modes.Mode_Time.second);
+    console.log("h2"+modes.Mode_Time.hour);
+    console.log("h3"+modes.Mode_Time.minute);
 
 
 
@@ -187,9 +187,6 @@ var m;
     }
 
 
-    console.log("honakharrrrr"+modes.Mode_Time.hour1);
-    console.log("honakharrrrrrr"+modes.Mode_Time.minute1);
-    console.log("honkhaaaaaaar"+modes.Mode_Time.second1);
 
 
 
