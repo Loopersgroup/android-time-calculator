@@ -79,12 +79,32 @@ app.factory("operation" ,function (difinition,modes,enabled){
 
 var m;
 
-  output.time_reform=function($arr)
+  output.time_reform=function()
   {
-    //$arr.sub=false;
-    modes.Mode_Time.second1 =parseInt(modes.Mode_Time.second)
-    modes.Mode_Time.hour1  =parseInt(modes.Mode_Time.hour)
-    modes.Mode_Time.minute1=parseInt(modes.Mode_Time.minute)
+
+    console.log("eshghammmmmmmm");
+    (modes.Mode_Time.second)=70;
+    (modes.Mode_Time.hour)=50;
+    (modes.Mode_Time.minute)=60;
+
+
+    console.log("honyyyyyyyyy1"+modes.Mode_Time.second);
+    console.log("honyyyyyyyyy2"+modes.Mode_Time.hour);
+    console.log("honyyyyyyyyy3"+modes.Mode_Time.minute);
+
+
+
+
+
+    modes.Mode_Time.second1=parseInt(modes.Mode_Time.second);
+    modes.Mode_Time.hour1=parseInt(modes.Mode_Time.hour);
+    modes.Mode_Time.minute1=parseInt(modes.Mode_Time.minute);
+
+
+    console.log("honmmmmmmmm1"+modes.Mode_Time.second1);
+    console.log("honmmmmmmmmm2"+modes.Mode_Time.hour1);
+    console.log("honmmmmmmmmmm3"+modes.Mode_Time.minute1);
+
 
 
     if(modes.Mode_Time.second1 <0)
@@ -99,7 +119,7 @@ var m;
     }
     if(modes.Mode_Time.minute1 <0)
     {
-      $scope.m=modes.Mode_Time.minute1;
+     m=modes.Mode_Time.minute1;
       modes.Mode_Time.minute1=60+((modes.Mode_Time.minute1)%60);
       modes.Mode_Time.hour1 += ( m-(m)%60) / 60;
       if(m % 60 !=0)
@@ -109,15 +129,11 @@ var m;
     }
     if(modes.Mode_Time.hour1 <0)
     {
-      $scope.m=modes.Mode_Time.hour1;
+      m=modes.Mode_Time.hour1;
       modes.Mode_Time.hour1=24+modes.Mode_Time.hour1%24;
-
     }
 
-    //if (modes.Mode_Time.day1 >=0){
-    //  modes.Mode_Time.hour1+=(((modes.Mode_Time.day1)%1)*24);
-    //
-    //}
+
     if (modes.Mode_Time.hour1 >=0){
       modes.Mode_Time.minute1+=((modes.Mode_Time.hour1)%1)*60;
       modes.Mode_Time.hour1-=((modes.Mode_Time.hour1)%1);
@@ -171,8 +187,23 @@ var m;
     }
 
 
+    console.log("honakharrrrr"+modes.Mode_Time.hour1);
+    console.log("honakharrrrrrr"+modes.Mode_Time.minute1);
+    console.log("honkhaaaaaaar"+modes.Mode_Time.second1);
+
+
+
   };
 
+
+
+
+  output.date_reform=function()
+  {
+
+
+
+  }
 
 
 

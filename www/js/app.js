@@ -346,6 +346,10 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     $scope.pre_number = $s;
     console.log(" Time REs =" + modes.input_res[2]);
 
+    if(modes.input_res[2]==2)
+    {
+      operation.time_reform();
+    }
 
 
   };
