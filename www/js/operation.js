@@ -241,9 +241,7 @@ app.factory("operation" ,function (modes,enabled,difinition,reform){
         }
       }
       else if(input1==3 && input2==3){
-
         reform.test();
-        reform.test1();
       }
       else if(input1==4 && input2==4){
         if(modes.temp_Mode_Date.hour>modes.Mode_Date.hour){

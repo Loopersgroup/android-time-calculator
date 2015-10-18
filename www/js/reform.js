@@ -124,16 +124,6 @@ app.factory('reform',function(modes)
     modes.Todate.to_date=Math.floor((d2 - d1) / msDay);
   };
 
-  output.test1=function() {
-    var msDay;
-    msDay = 60 * 60 * 24 * 1000;
-    var d1=new Date(2015,10,18);
-
-    var d2=new Date();
-    console.log("test 1 =  " + d2);
-    console.log(Math.floor((d2 - d1) / msDay) + ' full days between');
-    modes.Todate.to_date=Math.floor((d2 - d1) / msDay);
-  };
 
   return output;
 
