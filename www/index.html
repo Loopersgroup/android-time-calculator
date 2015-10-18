@@ -25,7 +25,7 @@
   <script src="js/operation.js"></script>
   <script src="js/regex.js"></script>
   <script src="js/matrixes.js"></script>
-
+  <script src="js/reform.js"></script>
 </head>
 <body ng-app="starter">
 
@@ -67,13 +67,13 @@
         </tr>
         <tr>
           <td><input class="btn btn-primary calc-btn-operator" type="button" value="+" ng-click="operation('+')" ng-disabled = "arr.plus"/></td>
-          <td><input class="btn btn-primary calc-btn-operator" type="button" value="-" ng-click="check('-')" ng-disabled = "arr.sub"/></td>
-          <td><input class="btn btn-primary calc-btn-operator" type="button" value="%" ng-click="check('%')" ng-disabled = "arr.div"/></td>
-          <td><input class="btn btn-primary calc-btn-operator" type="button" value="*" ng-click="check('*')" ng-disabled = "arr.multi"/></td>
-          <td> <input class="btn btn-primary calc-btn-operator" type="button" value="to" ng-click="check('to')" ng-disabled = "arr.to"/></td>
+          <td><input class="btn btn-primary calc-btn-operator" type="button" value="-" ng-click="operation('-')" ng-disabled = "arr.sub"/></td>
+          <td><input class="btn btn-primary calc-btn-operator" type="button" value="%" ng-click="operation('%')" ng-disabled = "arr.div"/></td>
+          <td><input class="btn btn-primary calc-btn-operator" type="button" value="*" ng-click="operation('*')" ng-disabled = "arr.multi"/></td>
+          <td> <input class="btn btn-primary calc-btn-operator" type="button" value="to" ng-click="operation('to')" ng-disabled = "arr.to"/></td>
         </tr>
         <tr>
-          <td colspan="3"> <input class="btn btn-primary calc-btn-operator " type="button" value="=" ng-click="check('=')" ng-disabled = "arr.equal"/></td>
+          <td colspan="3"> <input class="btn btn-primary calc-btn-operator " type="button" value="=" ng-click="operation('=')" ng-disabled = "arr.equal"/></td>
           <td> <input class="btn btn-primary calc-btn-operator" type="button" value="<=" ng-click="check('<=')" ng-disabled = "arr.back"/></td>
           <td> <input class="btn btn-primary calc-btn-operator" type="button" value="c" ng-click="check('C')"/></td>
         </tr>

@@ -182,10 +182,10 @@ app.factory('enabled',function(modes){
     //var path=/(00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23)/;
     if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d:(0|1|2|3|4|5)?\d$/.test(c))
     {
-      var index1=$string.search('/');
+      var index1=$string.search(':');
       var tmp;
       tmp=$string.substr(index1+1,$string.length);
-      var index2=tmp.search('/');
+      var index2=tmp.search(':');
       modes.Mode_Time.second=tmp.substr(index2+1,tmp.length);
 
       return 2;
@@ -196,7 +196,7 @@ app.factory('enabled',function(modes){
     }
     else if(/^(?:[01]?\d|2[0-3]):(0|1|2|3|4|5)?\d$/.test(c))
     {
-      var index=$string.search('/');
+      var index=$string.search(':');
       modes.Mode_Time.minute=$string.substr(index+1,$string.length);
       return 1;
     }
@@ -816,6 +816,7 @@ app.factory('enabled',function(modes){
         return 1;
       }
       else if ($present == '.') {
+        t += $present;
         flag_dot = 0;
         $arr.num0 = false;
         $arr.num1 = false;
@@ -836,30 +837,37 @@ app.factory('enabled',function(modes){
         if ($present == "y") {
           year = 1;
           modes.Mode_Piece.year=t;
+          console.log("y=" + modes.Mode_Piece.year);
         }
         if ($present == "mon") {
           month = 1;
           modes.Mode_Piece.month=t;
+          console.log("y=" + modes.Mode_Piece.month);
         }
         if ($present == "w") {
           week = 1;
           modes.Mode_Piece.week=t;
+          console.log("y=" + modes.Mode_Piece.week);
         }
         if ($present == "d") {
           day = 1;
           modes.Mode_Piece.day=t;
+          console.log("Dayyyy = " + modes.Mode_Piece.day);
         }
         if ($present == "h") {
           hour = 1;
           modes.Mode_Piece.hour=t;
+          console.log("y=" + modes.Mode_Piece.hour);
         }
         if ($present == "min") {
           minute = 1;
           modes.Mode_Piece.minute=t;
+          console.log("y=" + modes.Mode_Piece.minute);
         }
         if ($present == "sec") {
           second = 1;
           modes.Mode_Piece.second=t;
+          console.log("y=" + modes.Mode_Piece.second);
         }
         t='0';
         $arr.num0 = false;

@@ -19,7 +19,7 @@ app.run(function($ionicPlatform) {
     }
   });
 });
-app.controller('basic', function($scope,regex,enabled,difinition,modes,operation){
+app.controller('basic', function($scope,regex,enabled,difinition,modes,operation,reform){
   enabled.reset_able();
                                           //========== Calculation ======================
   $scope.operation = function ($s)
@@ -27,6 +27,57 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     if($s == '+')
     {
       operation.plus();
+      $scope.number = '';
+      modes.delete_modes();
+      $scope.check('C');
+    }
+    if($s == '-')
+    {
+      operation.mines();
+      $scope.number = '';
+      modes.delete_modes();
+      $scope.check('C')
+    }
+    else if($s == '*')
+    {
+      //console.log("zarrrrrb ooomad");
+      $scope.num('*');
+      operation.multiply();
+
+    }
+
+    else if($s == '%')
+    {
+
+      $scope.num('%');
+      operation.division();
+
+    }
+
+    else if($s == 'to')
+    {
+      console.log(" tooooooomad");
+      operation.To();
+      $scope.number = '';
+      modes.delete_modes();
+      $scope.check('C');
+
+    }
+
+    else if($s == '=')
+    {
+      operation.equal();
+      reform.calculate_piece();
+      console.log("pre Op = "+operation.preOp);
+      //if(operation.preOp == '+')
+        $scope.number =modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M "+ modes.Mode_Piece.day + " D " +
+          modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+      //else if(operation.preOp == 'to')
+        $scope.number =modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M "+ modes.Mode_Piece.day + " D " +
+          modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+      modes.delete_temps();
+      modes.delete_modes();
+
     }
 
   }
@@ -196,6 +247,7 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
 
   $scope.check = function($s)
   {
+    console.log("loaaaaadd"+parseFloat((modes.Mode_Piece.day)%1))
     if($s=='<=')
     {
       var temp_check=$scope.number.substr($scope.number.length - 1,$scope.number.length);
@@ -293,30 +345,33 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     }
     if($s=='C')
     {
+      console.log("salam");
       enabled.reset_able();
       $scope.number = "";
+
       $s = '';
       enabled.reg_piece($scope.arr,$scope.number,'c');
     }
     disAll();
     console.log("Test back =" + $scope.number)
       $scope.num($s);
-      //console.log("pre =" + $scope.pre_number);
-    if(enabled.able[1])
+      console.log("pre =" + $scope.number + "$s = " + $s);;
+   // if(enabled.able[1])
       modes.input_res[1] = enabled.reg_piece($scope.arr, $scope.number, $s);
-
-    if(enabled.able[2])
+      console.log("modes = " + modes.input_res[1]);
+    //if(enabled.able[2])
       modes.input_res[2] = enabled.timeEnabled($scope.arr, $scope.number);
 
-    if(enabled.able[3])
+    //if(enabled.able[3])
       modes.input_res[3] = enabled.dateEnabled($scope.arr, $scope.number);
 
-    if(enabled.able[5])
+//    if(enabled.able[5])
       modes.input_res[5] = enabled.intEnabled($scope.arr,$scope.number);
 
       $scope.pre_number = $s;
     console.log(" Time REs =" + modes.input_res[2]);
-
+    console.log("S =" + $scope.number)
+    console.log("Dotttttttt =" + ($scope.number)%1);
   };
 
   //========= Disable All============================
