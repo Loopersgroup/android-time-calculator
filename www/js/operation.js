@@ -23,6 +23,22 @@ app.factory("operation" ,function (modes,enabled,difinition){
       modes.temp_Mode_Piece.minute = modes.Mode_Piece.minute;
       modes.temp_Mode_Piece.second = modes.Mode_Piece.second;
     }
+    else if(output.inputRes == 2)
+    {
+      modes.temp_Mode_Time.hour = modes.Mode_Time.hour;
+      modes.temp_Mode_Time.minute = modes.Mode_Time.minute;
+      modes.temp_Mode_Time.second = modes.Mode_Time.second;
+    }
+    else if(output.inputRes == 3)
+    {
+      modes.temp_Mode_Date.year = modes.Mode_Date.year;
+      modes.temp_Mode_Date.month = modes.Mode_Date.minute;
+      modes.temp_Mode_Date.second = modes.Mode_Date.second;
+    }
+    else if(output.inputRes == 5)
+    {
+      modes.temp_Mode_SimpleNum = modes.Mode_SimpleNum;
+    }
     for (var i=1;i<6;i++)
       enabled.able[i] = difinition.plusArray[output.inputRes][i]
     output.preInputRes = output.inputRes;
@@ -34,18 +50,34 @@ app.factory("operation" ,function (modes,enabled,difinition){
       if (modes.input_res[i] == 2)
         output.inputRes = i;
     }
-    if(output.inputRes == 1)
-    {
-      modes.temp_Mode_Piece.year = modes.Mode_Piece.year;
-      modes.temp_Mode_Piece.month = modes.Mode_Piece.month;
-      modes.temp_Mode_Piece.week = modes.Mode_Piece.week;
-      modes.temp_Mode_Piece.day = modes.Mode_Piece.day;
-      modes.temp_Mode_Piece.hour = modes.Mode_Piece.hour;
-      modes.temp_Mode_Piece.minute = modes.Mode_Piece.minute;
-      modes.temp_Mode_Piece.second = modes.Mode_Piece.second;
-    }
+      if(output.inputRes == 1)
+      {
+        modes.temp_Mode_Piece.year = modes.Mode_Piece.year;
+        modes.temp_Mode_Piece.month = modes.Mode_Piece.month;
+        modes.temp_Mode_Piece.week = modes.Mode_Piece.week;
+        modes.temp_Mode_Piece.day = modes.Mode_Piece.day;
+        modes.temp_Mode_Piece.hour = modes.Mode_Piece.hour;
+        modes.temp_Mode_Piece.minute = modes.Mode_Piece.minute;
+        modes.temp_Mode_Piece.second = modes.Mode_Piece.second;
+      }
+      else if(output.inputRes == 2)
+      {
+        modes.temp_Mode_Time.hour = modes.Mode_Time.hour;
+        modes.temp_Mode_Time.minute = modes.Mode_Time.minute;
+        modes.temp_Mode_Time.second = modes.Mode_Time.second;
+      }
+      else if(output.inputRes == 3)
+      {
+        modes.temp_Mode_Date.year = modes.Mode_Date.year;
+        modes.temp_Mode_Date.month = modes.Mode_Date.minute;
+        modes.temp_Mode_Date.second = modes.Mode_Date.second;
+      }
+      else if(output.inputRes == 5)
+      {
+        modes.temp_Mode_SimpleNum = modes.Mode_SimpleNum;
+      }
     for (var i=1;i<6;i++)
-      enabled.able[i] = difinition.plusArray[output.inputRes][i]
+      enabled.able[i] = difinition.minusArray[output.inputRes][i]
     output.preInputRes = output.inputRes;
     output.preOp = '-';
   }
@@ -56,8 +88,9 @@ app.factory("operation" ,function (modes,enabled,difinition){
     var input2;
     var input1;
     for(var i=1;i<6;i++)
-      if(modes.input_res[i]==2) input2=i;
+      if(modes.input_res[i]==2) output.inputRes=i;
     input1 = output.preInputRes;
+    input2 = output.inputRes
     if(output.preOp=='+')
     {
       if(input1==1 && input2==1){
@@ -78,8 +111,13 @@ app.factory("operation" ,function (modes,enabled,difinition){
         }
         else if(input1==2){
           modes.temp_Mode_Time.hour = parseFloat(modes.temp_Mode_Time.hour ) + parseFloat(modes.Mode_Piece.hour);
-          modes.temp_Mode_Time.minute += modes.Mode_Piece.minute;
-          modes.temp_Mode_Time.second += modes.Mode_Piece.second;
+          modes.temp_Mode_Time.minute = parseFloat(modes.temp_Mode_Time.minute ) + parseFloat(modes.Mode_Piece.minute);
+          modes.temp_Mode_Time.second = parseFloat(modes.temp_Mode_Time.second ) + parseFloat(modes.Mode_Piece.second);
+
+          console.log("test = " + modes.Mode_Time.hour + " : " + modes.Mode_Time.minute + " : " + modes.Mode_Time.second )
+          modes.Mode_Time.hour  = modes.temp_Mode_Time.hour;
+          modes.Mode_Time.minute = modes.temp_Mode_Time.minute;
+          modes.Mode_Time.second = modes.temp_Mode_Time.second;
         }
       }
       if((input1==1 && input2==3) || (input1==3 && input2==1)) {
@@ -161,9 +199,9 @@ app.factory("operation" ,function (modes,enabled,difinition){
         modes.Mode_Piece.second =parseFloat(modes.temp_Mode_Piece.second) - parseFloat(modes.Mode_Piece.second);
       }
       if(input1==2 && input2==1){
-        modes.Mode_Time.hour=modes.temp_Mode_Time.hour - modes.Mode_Piece.hour;
-        modes.Mode_Time.minute=modes.temp_Mode_Time.minute - modes.Mode_Piece.minute;
-        modes.Mode_Time.second=modes.temp_Mode_Time.second - modes.Mode_Piece.second;
+        modes.Mode_Time.hour = parseFloat(modes.temp_Mode_Time.hour) - parseFloat(modes.Mode_Piece.hour);
+        modes.Mode_Time.minute =parseFloat(modes.temp_Mode_Time.minute) - parseFloat(modes.Mode_Piece.minute);
+        modes.Mode_Time.second =parseFloat(modes.temp_Mode_Time.second) - parseFloat(modes.Mode_Piece.second);
       }
       if(input1==3 && input2==1){
         modes.Mode_DateTime.year = modes.temp_Mode_Date.year - modes.Mode_Piece.year;
@@ -191,22 +229,22 @@ app.factory("operation" ,function (modes,enabled,difinition){
     {
       if((input1==5 && input2==1)||(input1==1 && input2==5)){
         if(input1==5){
-          modes.Mode_Piece.year=modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.year;
-          modes.Mode_Piece.month=modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.month;
-          modes.Mode_Piece.week=modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.week;
-          modes.Mode_Piece.day=modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.day;
-          modes.Mode_Piece.hour=modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.hour;
-          modes.Mode_Piece.minute=modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.minute;
-          modes.Mode_Piece.second=modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.second;
+          modes.Mode_Piece.year = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.year;
+          modes.Mode_Piece.month = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.month;
+          modes.Mode_Piece.week = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.week;
+          modes.Mode_Piece.day = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.day;
+          modes.Mode_Piece.hour = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.hour;
+          modes.Mode_Piece.minute = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.minute;
+          modes.Mode_Piece.second = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.second;
         }
         if(input1==1){
-          modes.Mode_Piece.year=modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.year;
-          modes.Mode_Piece.month=modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.month;
-          modes.Mode_Piece.week=modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.week;
-          modes.Mode_Piece.day=modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.day;
-          modes.Mode_Piece.hour=modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.hour;
-          modes.Mode_Piece.minute=modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.minute;
-          modes.Mode_Piece.second=modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.second;
+          modes.Mode_Piece.year = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.year;
+          modes.Mode_Piece.month = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.month;
+          modes.Mode_Piece.week = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.week;
+          modes.Mode_Piece.day = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.day;
+          modes.Mode_Piece.hour = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.hour;
+          modes.Mode_Piece.minute = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.minute;
+          modes.Mode_Piece.second = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.second;
         }
       }
       if(input1==5 && input2==5){
@@ -289,19 +327,41 @@ app.factory("operation" ,function (modes,enabled,difinition){
     //console.log("salam")
     for(var i=1;i<6;i++) {
       if (modes.input_res[i] == 2) {
-
-        numi=i;
-        console.log(numi)
+        output.inputRes=i;
       }
     }
-
+    if(output.inputRes == 1)
+    {
+      modes.temp_Mode_Piece.year = modes.Mode_Piece.year;
+      modes.temp_Mode_Piece.month = modes.Mode_Piece.month;
+      modes.temp_Mode_Piece.week = modes.Mode_Piece.week;
+      modes.temp_Mode_Piece.day = modes.Mode_Piece.day;
+      modes.temp_Mode_Piece.hour = modes.Mode_Piece.hour;
+      modes.temp_Mode_Piece.minute = modes.Mode_Piece.minute;
+      modes.temp_Mode_Piece.second = modes.Mode_Piece.second;
+    }
+    else if(output.inputRes == 2)
+    {
+      modes.temp_Mode_Time.hour = modes.Mode_Time.hour;
+      modes.temp_Mode_Time.minute = modes.Mode_Time.minute;
+      modes.temp_Mode_Time.second = modes.Mode_Time.second;
+    }
+    else if(output.inputRes == 3)
+    {
+      modes.temp_Mode_Date.year = modes.Mode_Date.year;
+      modes.temp_Mode_Date.month = modes.Mode_Date.minute;
+      modes.temp_Mode_Date.second = modes.Mode_Date.second;
+    }
+    else if(output.inputRes == 5)
+    {
+      modes.temp_Mode_SimpleNum = modes.Mode_SimpleNum;
+    }
     for(var i =1 ; i<6 ; i++)
     {
-      enabled.able[i] = difinition.divisionArray[numi][i];
+      enabled.able[i] = difinition.multiplyArray[output.inputRes][i];
     }
     output.preOp='*';
-    output.preInputRes =numi;
-
+    output.preInputRes =output.inputRes;
   };
 
 
@@ -312,11 +372,36 @@ app.factory("operation" ,function (modes,enabled,difinition){
     for(var i=1;i<6;i++) {
       if (modes.input_res[i] == 2) {
 
-        numi=i;
-        console.log(numi)
+        output.inputRes=i;
+        console.log(output.inputRes)
       }
     }
-
+    if(output.inputRes == 1)
+    {
+      modes.temp_Mode_Piece.year = modes.Mode_Piece.year;
+      modes.temp_Mode_Piece.month = modes.Mode_Piece.month;
+      modes.temp_Mode_Piece.week = modes.Mode_Piece.week;
+      modes.temp_Mode_Piece.day = modes.Mode_Piece.day;
+      modes.temp_Mode_Piece.hour = modes.Mode_Piece.hour;
+      modes.temp_Mode_Piece.minute = modes.Mode_Piece.minute;
+      modes.temp_Mode_Piece.second = modes.Mode_Piece.second;
+    }
+    else if(output.inputRes == 2)
+    {
+      modes.temp_Mode_Time.hour = modes.Mode_Time.hour;
+      modes.temp_Mode_Time.minute = modes.Mode_Time.minute;
+      modes.temp_Mode_Time.second = modes.Mode_Time.second;
+    }
+    else if(output.inputRes == 3)
+    {
+      modes.temp_Mode_Date.year = modes.Mode_Date.year;
+      modes.temp_Mode_Date.month = modes.Mode_Date.minute;
+      modes.temp_Mode_Date.second = modes.Mode_Date.second;
+    }
+    else if(output.inputRes == 5)
+    {
+      modes.temp_Mode_SimpleNum = modes.Mode_SimpleNum;
+    }
     for(var i =1 ; i<6 ; i++)
     {
       enabled.able[i] = difinition.divisionArray[numi][i];
@@ -339,11 +424,31 @@ app.factory("operation" ,function (modes,enabled,difinition){
     {
       enabled.able[i] = difinition.ToArray[output.inputRes][i];
     }
-    if(output.inputRes == 2)
+    if(output.inputRes == 1)
+    {
+      modes.temp_Mode_Piece.year = modes.Mode_Piece.year;
+      modes.temp_Mode_Piece.month = modes.Mode_Piece.month;
+      modes.temp_Mode_Piece.week = modes.Mode_Piece.week;
+      modes.temp_Mode_Piece.day = modes.Mode_Piece.day;
+      modes.temp_Mode_Piece.hour = modes.Mode_Piece.hour;
+      modes.temp_Mode_Piece.minute = modes.Mode_Piece.minute;
+      modes.temp_Mode_Piece.second = modes.Mode_Piece.second;
+    }
+    else if(output.inputRes == 2)
     {
       modes.temp_Mode_Time.hour = modes.Mode_Time.hour;
       modes.temp_Mode_Time.minute = modes.Mode_Time.minute;
       modes.temp_Mode_Time.second = modes.Mode_Time.second;
+    }
+    else if(output.inputRes == 3)
+    {
+      modes.temp_Mode_Date.year = modes.Mode_Date.year;
+      modes.temp_Mode_Date.month = modes.Mode_Date.minute;
+      modes.temp_Mode_Date.second = modes.Mode_Date.second;
+    }
+    else if(output.inputRes == 5)
+    {
+      modes.temp_Mode_SimpleNum = modes.Mode_SimpleNum;
     }
     console.log("Mode : "+modes.Mode_Time.hour + "H" + modes.Mode_Time.minute + "M" + modes.Mode_Time.second + "S");
     output.preOp = 'to';
@@ -354,12 +459,6 @@ app.factory("operation" ,function (modes,enabled,difinition){
   var m;
 
   output.time_reform=function() {
-
-
-    (modes.Mode_Time.second) = 70;
-    (modes.Mode_Time.hour) = 50;
-    (modes.Mode_Time.minute) = 60;
-
 
     console.log("h1" + modes.Mode_Time.second);
     console.log("h2" + modes.Mode_Time.hour);
@@ -447,6 +546,9 @@ app.factory("operation" ,function (modes,enabled,difinition){
       modes.Mode_Time.hour1 = 24 + modes.Mode_Time.hour1 % 24;
 
     }
+    modes.Mode_Time.hour = modes.Mode_Time.hour1
+    modes.Mode_Time.minute = modes.Mode_Time.minute1
+    modes.Mode_Time.second = modes.Mode_Time.second1
   }
 
 

@@ -41,8 +41,10 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     else if($s == '*')
     {
       //console.log("zarrrrrb ooomad");
-      $scope.num('*');
       operation.multiply();
+      $scope.number = '';
+      modes.delete_modes();
+      $scope.check('C');
 
     }
 
@@ -68,13 +70,36 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     {
       operation.equal();
       reform.calculate_piece();
-      console.log("pre Op = "+operation.preOp);
-      //if(operation.preOp == '+')
-        $scope.number =modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M "+ modes.Mode_Piece.day + " D " +
-          modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
-      //else if(operation.preOp == 'to')
-        $scope.number =modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M "+ modes.Mode_Piece.day + " D " +
-          modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+      operation.time_reform();
+      console.log("pre Op = " + operation.preOp);
+      console.log("Matrix = " + difinition.multiplyArray[operation.preInputRes][operation.inputRes] + "pre = " + operation.preInputRes + "cur = " + operation.inputRes);
+      if(operation.preOp == '+') {
+        if (difinition.plusArray[operation.preInputRes][operation.inputRes] == 1)
+          $scope.number = modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M " + modes.Mode_Piece.day + " D " +
+            modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+        else if (difinition.plusArray[operation.preInputRes][operation.inputRes] == 2) {
+          $scope.number = modes.Mode_Time.hour + " : " + modes.Mode_Time.minute + " : " + modes.Mode_Time.second;
+        }
+      }
+      else if(operation.preOp == '-') {
+        if ( difinition.minusArray[operation.preInputRes][operation.inputRes] == 1)
+          $scope.number = modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M " + modes.Mode_Piece.day + " D " +
+            modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+        else if ( difinition.minusArray[operation.preInputRes][operation.inputRes] == 2) {
+          $scope.number = modes.Mode_Time.hour + " : " + modes.Mode_Time.minute + " : " + modes.Mode_Time.second;
+        }
+      }
+      else if(operation.preOp == '*') {
+        if ( difinition.multiplyArray[operation.preInputRes][operation.inputRes] == 1)
+          $scope.number = modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M " + modes.Mode_Piece.day + " D " +
+            modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+      }
+      else if(operation.preOp == 'to')
+        if( operation.preInputRes == 2 && operation.inputRes == 2)
+        $scope.number =modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+      else if(operation.preInputRes == 3 && operation.inputRes == 3)
+          $scope.number =modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M "+ modes.Mode_Piece.day + " D " +
+            modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
       modes.delete_temps();
       modes.delete_modes();
 
@@ -356,16 +381,16 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     console.log("Test back =" + $scope.number)
       $scope.num($s);
       console.log("pre =" + $scope.number + "$s = " + $s);;
-   // if(enabled.able[1])
+    if(enabled.able[1])
       modes.input_res[1] = enabled.reg_piece($scope.arr, $scope.number, $s);
       console.log("modes = " + modes.input_res[1]);
-    //if(enabled.able[2])
+    if(enabled.able[2])
       modes.input_res[2] = enabled.timeEnabled($scope.arr, $scope.number);
 
-    //if(enabled.able[3])
+    if(enabled.able[3])
       modes.input_res[3] = enabled.dateEnabled($scope.arr, $scope.number);
 
-//    if(enabled.able[5])
+    if(enabled.able[5])
       modes.input_res[5] = enabled.intEnabled($scope.arr,$scope.number);
 
       $scope.pre_number = $s;
