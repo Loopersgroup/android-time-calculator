@@ -1,7 +1,7 @@
 /**
  * Created by Hossein on 10/14/2015.
  */
-app.factory("operation" ,function (modes,enabled,difinition){
+app.factory("operation" ,function (modes,enabled,difinition,reform){
 
   var output = {};
   output.inputRes='';
@@ -37,7 +37,7 @@ app.factory("operation" ,function (modes,enabled,difinition){
     }
     else if(output.inputRes == 5)
     {
-      modes.temp_Mode_SimpleNum = modes.Mode_SimpleNum;
+      modes.temp_Mode_SimpleNum.num = modes.Mode_SimpleNum.num;
     }
     for (var i=1;i<6;i++)
       enabled.able[i] = difinition.plusArray[output.inputRes][i]
@@ -183,7 +183,7 @@ app.factory("operation" ,function (modes,enabled,difinition){
       }
 
       if(input1==5 && input2==5) {
-        modes.Mode_SimpleNum+=modes.temp_Mode_SimpleNum;
+        modes.Mode_SimpleNum.num =parseFloat(modes.Mode_SimpleNum.num ) + parseFloat(modes.temp_Mode_SimpleNum.num);
       }
     }
 
@@ -222,7 +222,7 @@ app.factory("operation" ,function (modes,enabled,difinition){
         modes.Mode_DateTime.second = modes.temp_Mode_DateTime.second - modes.temp_Mode_Piece.second;
       }
       if(input1==5 && input2==5){
-        modes.Mode_SimpleNum+=modes.temp_Mode_SimpleNum;
+        modes.Mode_SimpleNum = parseFloat(modes.Mode_SimpleNum ) - parseFloat(modes.temp_Mode_SimpleNum);
       }
     }
     if(output.preOp=='*')
@@ -237,7 +237,7 @@ app.factory("operation" ,function (modes,enabled,difinition){
           modes.Mode_Piece.minute = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.minute;
           modes.Mode_Piece.second = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.second;
         }
-        if(input1==1){
+        else if(input1==1){
           modes.Mode_Piece.year = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.year;
           modes.Mode_Piece.month = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.month;
           modes.Mode_Piece.week = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.week;
@@ -248,7 +248,7 @@ app.factory("operation" ,function (modes,enabled,difinition){
         }
       }
       if(input1==5 && input2==5){
-        modes.Mode_SimpleNum.num=modes.Mode_SimpleNum.num*modes.temp_Mode_SimpleNum.num;
+        modes.Mode_SimpleNum.num = modes.Mode_SimpleNum.num * modes.temp_Mode_SimpleNum.num;
       }
     }
     if(output.preOp=='%'){
@@ -284,17 +284,9 @@ app.factory("operation" ,function (modes,enabled,difinition){
         }
       }
       else if(input1==3 && input2==3){
-        if(modes.temp_Mode_Date.hour>modes.Mode_Date.hour){
-          modes.Mode_Piece.year=modes.temp_Mode_Date.year-modes.Mode_Date.day;
-          modes.Mode_Piece.month=modes.temp_Mode_Date.month-modes.Mode_Date.month;
-          modes.Mode_Piece.day=modes.temp_Mode_Date.day-modes.Mode_Date.day;
+          reform.test();
         }
-        else{
-          modes.Mode_Piece.year=modes.Mode_Date.year-modes.temp_Mode_Date.year;
-          modes.Mode_Piece.month=modes.Mode_Date.minute-modes.temp_Mode_Date.month;
-          modes.Mode_Piece.day=modes.Mode_Date.second-modes.temp_Mode_Date.day;
-        }
-      }
+
       else if(input1==4 && input2==4){
         if(modes.temp_Mode_Date.hour>modes.Mode_Date.hour){
           modes.Mode_Piece.year=modes.temp_Mode_DateTime.year-modes.Mode_DateTime.day;
@@ -354,7 +346,7 @@ app.factory("operation" ,function (modes,enabled,difinition){
     }
     else if(output.inputRes == 5)
     {
-      modes.temp_Mode_SimpleNum = modes.Mode_SimpleNum;
+      modes.temp_Mode_SimpleNum.num = modes.Mode_SimpleNum.num;
     }
     for(var i =1 ; i<6 ; i++)
     {
@@ -406,7 +398,7 @@ app.factory("operation" ,function (modes,enabled,difinition){
     {
       enabled.able[i] = difinition.divisionArray[numi][i];
     }
-    output.preOp='%';
+    output.preOp = '%';
     output.preInputRes =numi;
 
   };
@@ -416,7 +408,7 @@ app.factory("operation" ,function (modes,enabled,difinition){
     for(var i=1;i<6;i++) {
       if (modes.input_res[i] == 2) {
 
-        output.inputRes=i;
+        output.inputRes = i;
       }
     }
 
@@ -443,8 +435,8 @@ app.factory("operation" ,function (modes,enabled,difinition){
     else if(output.inputRes == 3)
     {
       modes.temp_Mode_Date.year = modes.Mode_Date.year;
-      modes.temp_Mode_Date.month = modes.Mode_Date.minute;
-      modes.temp_Mode_Date.second = modes.Mode_Date.second;
+      modes.temp_Mode_Date.month = modes.Mode_Date.month;
+      modes.temp_Mode_Date.day = modes.Mode_Date.day;
     }
     else if(output.inputRes == 5)
     {
