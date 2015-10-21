@@ -130,7 +130,7 @@ app.factory('difinition',function()
     factory.divisionArray[1][2] = 0;
     factory.divisionArray[1][3] = 0;
     factory.divisionArray[1][4] = 0;
-    factory.divisionArray[1][5] = 0;
+    factory.divisionArray[1][5] = 1;
     factory.divisionArray[2][1] = 2;
     factory.divisionArray[2][2] = 0;
     factory.divisionArray[2][3] = 0;

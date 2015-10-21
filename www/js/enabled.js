@@ -328,36 +328,44 @@ app.factory('enabled',function(modes){
   var flag_dot=1;
   output.back_piece = function($string)
   {
-    if($string == "num")
+    if($string == "0" || $string == "1" || $string == "2" || $string == "3" ||$string == "4" ||$string == "5"
+      ||$string == "6" ||$string == "7" ||$string == "8" ||$string == "9" ||$string == ".")
     {
       t = t.replace(/.$/,"");
     }
-    else if($string =="sec")
+    else if($string =="s")
     {
+      modes.Mode_Piece.second = 0;
       second = 0;
     }
-    else if($string =="min")
+    else if($string =="m")
     {
+      modes.Mode_Piece.minute = 0;
       minute = 0;
     }
-    else if($string =="hour")
+    else if($string =="h")
     {
+      modes.Mode_Piece.hour = 0;
       hour = 0;
     }
-    else if($string =="day")
+    else if($string =="d")
     {
+      modes.Mode_Piece.day = 0;
       day = 0;
     }
-    else if($string =="week")
+    else if($string =="w")
     {
+      modes.Mode_Piece.week = 0;
       week = 0;
     }
-    else if($string =="mon")
+    else if($string =="M")
     {
+      modes.Mode_Piece.month = 0;
       month = 0;
     }
-    else if($string =="year")
+    else if($string =="y")
     {
+      modes.Mode_Piece.year = 0;
       year = 0;
     }
   };
@@ -414,6 +422,7 @@ app.factory('enabled',function(modes){
         $arr.num9 = false;
         if (flag_dot == 1)
           $arr.dot = false;
+        return 1;
       }
       else if ($present == '.') {
         t += $present;
@@ -428,8 +437,10 @@ app.factory('enabled',function(modes){
         $arr.num7 = false;
         $arr.num8 = false;
         $arr.num9 = false;
+        return 1;
       }
-      else if ($present == 'y' || $present == 'mon' || $present == 'w' || $present == 'd' || $present == 'h' || $present == 'min' || $present == 'sec') {
+      else if ($present == 'y' || $present == 'M' || $present == 'w' || $present == 'd' || $present == 'h' || $present == 'm'
+        || $present == 's') {
         flag_dot = 1;
         t= t.substr(1, t.length);
         console.log("t1=" + t);
@@ -439,7 +450,7 @@ app.factory('enabled',function(modes){
           modes.Mode_Piece.year=t;
           console.log("y=" + modes.Mode_Piece.year);
         }
-        if ($present == "mon") {
+        if ($present == "M") {
           month = 1;
           modes.Mode_Piece.month=t;
           console.log("y=" + modes.Mode_Piece.month);
@@ -459,12 +470,12 @@ app.factory('enabled',function(modes){
           modes.Mode_Piece.hour=t;
           console.log("y=" + modes.Mode_Piece.hour);
         }
-        if ($present == "min") {
+        if ($present == "m") {
           minute = 1;
           modes.Mode_Piece.minute=t;
           console.log("y=" + modes.Mode_Piece.minute);
         }
-        if ($present == "sec") {
+        if ($present == "s") {
           second = 1;
           modes.Mode_Piece.second=t;
           console.log("y=" + modes.Mode_Piece.second);
@@ -487,11 +498,8 @@ app.factory('enabled',function(modes){
         console.log("year = " + year);
         return 2;
       }
-      else if($present=='')
-      {
-
-      }
       else {
+        console.log("Present = "+$present);
         flag = 0;
         year = 1;
         month = 1;
@@ -531,13 +539,14 @@ app.factory('enabled',function(modes){
   //=============Int Enabled =================
   output.intEnabled = function($arr,$string)
   {
-    if (($string.search("y")>0 || $string.search("mon")>0 || $string.search("w")>0 || $string.search("d")>0 ||
-      $string.search("h")>0 || $string.search("min")>0 || $string.search("sec")>0 || $string.search(":")>0 || $string.search("\\+")>0
-      || $string.search("-")>0 || $string.search("%")>0 || $string.search("\\*")>0 || $string.search("/")>0 || $string =="") )
+    if (($string.search("y")>0 || $string.search("M")>0 || $string.search("w")>0 || $string.search("d")>0 ||
+      $string.search("h")>0 || $string.search("m")>0 || $string.search("s")>0 || $string.search(":")>0 || $string.search("\\+")>0
+      || $string.search("-")>0 || $string.search("%")>0 || $string.search("\\*")>0 || $string.search("/")>0) )
     {
+      modes.Mode_SimpleNum.num = 0;
       return 0;
     }
-    else{
+    else if($string !=""){
       for(var i=0;i<=9;i++)
         output.changeStatus($arr,i);
       output.changeStatus($arr,'+');
@@ -545,8 +554,16 @@ app.factory('enabled',function(modes){
       output.changeStatus($arr,'/');
       output.changeStatus($arr,'*');
       output.changeStatus($arr,'.');
-      modes.Mode_SimpleNum.num=$string;
+      modes.Mode_SimpleNum.num = parseFloat($string);
       return 2;
+    }
+    if($string =="")
+    {
+      for(var i=0;i<=9;i++)
+        output.changeStatus($arr,i);
+      $arr.dot = false;
+      modes.Mode_SimpleNum.num = parseFloat($string);
+      return 1;
     }
 
   }

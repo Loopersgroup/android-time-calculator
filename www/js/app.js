@@ -56,9 +56,9 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     {
       operation.division();
       $scope.number = '';
+      enabled.reg_piece($scope.arr,$scope.number,'c');
       modes.delete_modes();
       //$scope.check('C');
-      enabled.reg_piece($scope.arr,$scope.number,'c');
       $scope.check('');
     }
 
@@ -88,7 +88,7 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
         }
         else if(difinition.plusArray[operation.preInputRes][operation.inputRes] == 5)
         {
-          $scope.number = modes.Mode_SimpleNum.num;
+          $scope.number = modes.Mode_SimpleNum.num + '';
         }
       }
       else if(operation.preOp == '-') {
@@ -99,12 +99,14 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
           $scope.number = modes.Mode_Time.hour + " : " + modes.Mode_Time.minute + " : " + modes.Mode_Time.second;
         }
         else if( difinition.minusArray[operation.preInputRes][operation.inputRes] == 5)
-        $scope.number = modes.Mode_SimpleNum.num;
+        $scope.number = modes.Mode_SimpleNum.num + '';
       }
       else if(operation.preOp == '*') {
         if ( difinition.multiplyArray[operation.preInputRes][operation.inputRes] == 1)
           $scope.number = modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M " + modes.Mode_Piece.day + " D " +
             modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+        else if(difinition.multiplyArray[operation.preInputRes][operation.inputRes] == 5)
+          $scope.number = modes.Mode_SimpleNum.num + '';
       }
       else if(operation.preOp == 'to') {
         if (operation.preInputRes == 2 && operation.inputRes == 2)
@@ -112,9 +114,12 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
         else if (operation.preInputRes == 3 && operation.inputRes == 3)
           $scope.number =modes.Todate.to_date + "Days";
       }
-      else
+      else if(operation.preOp == '%')
+        if(difinition.divisionArray[operation.preInputRes][operation.inputRes] == 1)
         $scope.number = modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M " + modes.Mode_Piece.day + " D " +
           modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+      else if (difinition.divisionArray[operation.preInputRes][operation.inputRes] == 5)
+        $scope.number = modes.Mode_SimpleNum.num + '';
       enabled.reg_piece($scope.arr,$scope.number,'c');
       enabled.reset_able();
       modes.delete_temps();
@@ -237,6 +242,12 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
   //======================== piece =============
  $scope.piece_reform = function ()
   {
+
+    for(var i=0;i<=$scope.num.length;i++)
+    {
+      enabled.reg_piece($scope.arr,$scope.number[i]);
+    }
+    /*
     var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
     if(temp_s == 'c') {
       $scope.number = $scope.number.replace(/.$/, "");
@@ -283,13 +294,45 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     {
       $scope.number = $scope.number.replace(/.$/,"");
       reform_temp = temp_s;
-    }
+    }*/
   }
 //--------------------------------------------------------------------------------------------
 
   $scope.check = function($s) {
     if ($s == '<=') {
-      var temp_check = $scope.number.substr($scope.number.length - 1, $scope.number.length);
+      var back_temp;
+      if($scope.number != '')
+         back_temp = $scope.number.substr($scope.number.length - 1,$scope.number.length);
+      else
+        back_temp = '';
+      if(back_temp == 'o')
+      {
+
+      }
+      else if(back_temp!='')
+      {
+        enabled.reg_piece($scope.arr,$scope.number,'c');
+        for(var i =0;i<$scope.number.length ; i++)
+          console.log("=>" + $scope.number[i]);
+        enabled.back_piece(back_temp);
+        var ref_num = $scope.number;
+        //$scope.check('C');
+        $scope.number = '';
+        for(var i = 0;i<ref_num.length - 1;i++) {
+         //  enabled.reg_piece($scope.arr,ref_num,$scope.number[i]);
+          $scope.check(ref_num[i]);
+        }
+        //$scope.number = $scope.number.replace(/.$/,"");
+        //$s=$scope.number.substr($scope.number.length-2,$scope.number.length - 1);
+        //$s = '';
+      }
+
+
+     /* var temp_check;
+      if($scope.number !=0)
+        temp_check = $scope.number.substr($scope.number.length - 1, $scope.number.length);
+      else
+        temp_check = '';
       console.log("temp-check = " + temp_check);
       if (/\d/.test(temp_check) || temp_check == ":" || temp_check == "/" || temp_check == ".") {
         if (temp_check == '.') {
@@ -369,9 +412,9 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
       }
       else {
         $s = "";
-      }
+      }*/
     }
-    if ($s == 'C') {
+    else if ($s == 'C') {
       console.log("salam");
       enabled.reset_able();
       modes.delete_modes();
@@ -380,35 +423,39 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
       $s = '';
       enabled.reg_piece($scope.arr, $scope.number, 'c');
     }
-    disAll();
-    console.log("Test back =" + $scope.number)
-    $scope.num($s);
-    console.log("pre =" + $scope.number + "$s = " + $s);
-    for (var i = 1; i < 6; i++) {
-      console.log("Able " + i + " = " + enabled.able[i])
+    else {
+      disAll();
+      console.log("Test back =" + $scope.number)
+      $scope.num($s);
+      console.log("pre =" + $scope.number + "$s = " + $s);
+      for (var i = 1; i < 6; i++) {
+        console.log("Able " + i + " = " + enabled.able[i])
+      }
+      if (enabled.able[1] != 0)
+        modes.input_res[1] = enabled.reg_piece($scope.arr, $scope.number, $s);
+      else
+        modes.input_res[1] = 0;
+      if (enabled.able[2] != 0) {
+        modes.input_res[2] = enabled.timeEnabled($scope.arr, $scope.number);
+        console.log("Input Res Time = " + modes.input_res[2])
+      }
+      else
+        modes.input_res[2] = 0;
+
+      if (enabled.able[3] != 0)
+        modes.input_res[3] = enabled.dateEnabled($scope.arr, $scope.number);
+      else
+        modes.input_res[3] = 0;
+      if (enabled.able[5] != 0)
+        modes.input_res[5] = enabled.intEnabled($scope.arr, $scope.number);
+      else
+        modes.input_res[5] = 0;
+
+      for (var i = 1; i < 6; i++) {
+        console.log("Input Res : " + i + " = " + modes.input_res[i])
+      }
+      $scope.pre_number = $s
     }
-    if (enabled.able[1] != 0)
-      modes.input_res[1] = enabled.reg_piece($scope.arr, $scope.number, $s);
-    else
-      modes.input_res[1] = 0;
-    if(enabled.able[2] != 0) {
-      modes.input_res[2] = enabled.timeEnabled($scope.arr, $scope.number);
-    console.log("Input Res Time = " + modes.input_res[2])
-    }
-    else
-      modes.input_res[2] = 0;
-
-    if(enabled.able[3] != 0)
-      modes.input_res[3] = enabled.dateEnabled($scope.arr, $scope.number);
-    else
-      modes.input_res[3] = 0;
-    if(enabled.able[5] != 0)
-      modes.input_res[5] = enabled.intEnabled($scope.arr,$scope.number);
-    else
-      modes.input_res[5] = 0;
-
-
-    $scope.pre_number = $s
   };
 
   //========= Disable All============================

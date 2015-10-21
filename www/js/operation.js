@@ -229,22 +229,22 @@ app.factory("operation" ,function (modes,enabled,difinition,reform){
     {
       if((input1==5 && input2==1)||(input1==1 && input2==5)){
         if(input1==5){
-          modes.Mode_Piece.year = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.year;
-          modes.Mode_Piece.month = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.month;
-          modes.Mode_Piece.week = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.week;
-          modes.Mode_Piece.day = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.day;
-          modes.Mode_Piece.hour = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.hour;
-          modes.Mode_Piece.minute = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.minute;
-          modes.Mode_Piece.second = modes.temp_Mode_SimpleNum.num * modes.Mode_Piece.second;
+          modes.Mode_Piece.year =parseFloat(modes.temp_Mode_SimpleNum.num) *parseFloat(modes.Mode_Piece.year)
+          modes.Mode_Piece.month =parseFloat(modes.temp_Mode_SimpleNum.num) *parseFloat(modes.Mode_Piece.month)
+          modes.Mode_Piece.week = parseFloat(modes.temp_Mode_SimpleNum.num) *parseFloat(modes.Mode_Piece.week)
+          modes.Mode_Piece.day = parseFloat(modes.temp_Mode_SimpleNum.num) *parseFloat(modes.Mode_Piece.day)
+          modes.Mode_Piece.hour = parseFloat(modes.temp_Mode_SimpleNum.num) *parseFloat(modes.Mode_Piece.hour)
+          modes.Mode_Piece.minute = parseFloat(modes.temp_Mode_SimpleNum.num) *parseFloat(modes.Mode_Piece.minute)
+          modes.Mode_Piece.second = parseFloat(modes.temp_Mode_SimpleNum.num) *parseFloat(modes.Mode_Piece.second)
         }
         else if(input1==1){
-          modes.Mode_Piece.year = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.year;
-          modes.Mode_Piece.month = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.month;
-          modes.Mode_Piece.week = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.week;
-          modes.Mode_Piece.day = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.day;
-          modes.Mode_Piece.hour = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.hour;
-          modes.Mode_Piece.minute = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.minute;
-          modes.Mode_Piece.second = modes.Mode_SimpleNum.num * modes.temp_Mode_Piece.second;
+          modes.Mode_Piece.year = parseFloat(modes.Mode_SimpleNum.num) *parseFloat(modes.temp_Mode_Piece.year);
+          modes.Mode_Piece.month = parseFloat(modes.Mode_SimpleNum.num) *parseFloat(modes.temp_Mode_Piece.month);
+          modes.Mode_Piece.week = parseFloat(modes.Mode_SimpleNum.num) *parseFloat(modes.temp_Mode_Piece.week);
+          modes.Mode_Piece.day = parseFloat(modes.Mode_SimpleNum.num) *parseFloat(modes.temp_Mode_Piece.day);
+          modes.Mode_Piece.hour = parseFloat(modes.Mode_SimpleNum.num) *parseFloat(modes.temp_Mode_Piece.hour);
+          modes.Mode_Piece.minute = parseFloat(modes.Mode_SimpleNum.num) *parseFloat(modes.temp_Mode_Piece.minute);
+          modes.Mode_Piece.second = parseFloat(modes.Mode_SimpleNum.num) *parseFloat(modes.temp_Mode_Piece.second);
         }
       }
       if(input1==5 && input2==5){
@@ -253,16 +253,16 @@ app.factory("operation" ,function (modes,enabled,difinition,reform){
     }
     if(output.preOp=='%'){
       if(input1==1 && input2==5) {
-        modes.Mode_Piece.year =modes.temp_Mode_Piece.year / modes.Mode_SimpleNum.num;
-        modes.Mode_Piece.month =modes.temp_Mode_Piece.month / modes.Mode_SimpleNum.num;
-        modes.Mode_Piece.week =modes.temp_Mode_Piece.week / modes.Mode_SimpleNum.num;
-        modes.Mode_Piece.day =modes.temp_Mode_Piece.day / modes.Mode_SimpleNum.num;
-        modes.Mode_Piece.hour =modes.temp_Mode_Piece.hour / modes.Mode_SimpleNum.num;
+        modes.Mode_Piece.year = modes.temp_Mode_Piece.year / modes.Mode_SimpleNum.num;
+        modes.Mode_Piece.month = modes.temp_Mode_Piece.month / modes.Mode_SimpleNum.num;
+        modes.Mode_Piece.week = modes.temp_Mode_Piece.week / modes.Mode_SimpleNum.num;
+        modes.Mode_Piece.day = modes.temp_Mode_Piece.day / modes.Mode_SimpleNum.num;
+        modes.Mode_Piece.hour = modes.temp_Mode_Piece.hour / modes.Mode_SimpleNum.num;
         modes.Mode_Piece.minute =modes.temp_Mode_Piece.minute / modes.Mode_SimpleNum.num;
         modes.Mode_Piece.second =modes.temp_Mode_Piece.second / modes.Mode_SimpleNum.num;
       }
       if(input1==5 && input2==5){
-        modes.Mode_SimpleNum.num=modes.temp_Mode_SimpleNum.num/modes.Mode_SimpleNum.num;
+        modes.Mode_SimpleNum.num = modes.temp_Mode_SimpleNum.num / modes.Mode_SimpleNum.num;
       }
     }
     if(output.preOp=='to'){
@@ -316,7 +316,6 @@ app.factory("operation" ,function (modes,enabled,difinition,reform){
 
   output.multiply=function()
   {
-    //console.log("salam")
     for(var i=1;i<6;i++) {
       if (modes.input_res[i] == 2) {
         output.inputRes=i;
@@ -331,18 +330,6 @@ app.factory("operation" ,function (modes,enabled,difinition,reform){
       modes.temp_Mode_Piece.hour = modes.Mode_Piece.hour;
       modes.temp_Mode_Piece.minute = modes.Mode_Piece.minute;
       modes.temp_Mode_Piece.second = modes.Mode_Piece.second;
-    }
-    else if(output.inputRes == 2)
-    {
-      modes.temp_Mode_Time.hour = modes.Mode_Time.hour;
-      modes.temp_Mode_Time.minute = modes.Mode_Time.minute;
-      modes.temp_Mode_Time.second = modes.Mode_Time.second;
-    }
-    else if(output.inputRes == 3)
-    {
-      modes.temp_Mode_Date.year = modes.Mode_Date.year;
-      modes.temp_Mode_Date.month = modes.Mode_Date.minute;
-      modes.temp_Mode_Date.second = modes.Mode_Date.second;
     }
     else if(output.inputRes == 5)
     {
@@ -360,7 +347,6 @@ app.factory("operation" ,function (modes,enabled,difinition,reform){
 
   output.division=function()
   {
-    //console.log("salam33333")
     for(var i=1;i<6;i++) {
       if (modes.input_res[i] == 2) {
 
@@ -378,28 +364,20 @@ app.factory("operation" ,function (modes,enabled,difinition,reform){
       modes.temp_Mode_Piece.minute = modes.Mode_Piece.minute;
       modes.temp_Mode_Piece.second = modes.Mode_Piece.second;
     }
-    else if(output.inputRes == 2)
-    {
-      modes.temp_Mode_Time.hour = modes.Mode_Time.hour;
-      modes.temp_Mode_Time.minute = modes.Mode_Time.minute;
-      modes.temp_Mode_Time.second = modes.Mode_Time.second;
-    }
-    else if(output.inputRes == 3)
-    {
-      modes.temp_Mode_Date.year = modes.Mode_Date.year;
-      modes.temp_Mode_Date.month = modes.Mode_Date.minute;
-      modes.temp_Mode_Date.second = modes.Mode_Date.second;
-    }
     else if(output.inputRes == 5)
     {
-      modes.temp_Mode_SimpleNum = modes.Mode_SimpleNum;
+      modes.temp_Mode_SimpleNum.num = modes.Mode_SimpleNum.num;
     }
     for(var i =1 ; i<6 ; i++)
     {
-      enabled.able[i] = difinition.divisionArray[numi][i];
+      enabled.able[i] = difinition.divisionArray[output.inputRes][i];
+    }
+    for(var i =1 ; i<6 ; i++)
+    {
+      console.log("Chaaaaaaaaap = " + i + " : " + difinition.divisionArray[output.inputRes][i])
     }
     output.preOp = '%';
-    output.preInputRes =numi;
+    output.preInputRes =output.inputRes;
 
   };
 
