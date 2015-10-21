@@ -81,43 +81,44 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
       console.log("pre Op = " + operation.preOp);
       if(operation.preOp == '+') {
         if (difinition.plusArray[operation.preInputRes][operation.inputRes] == 1)
-          $scope.number = modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M " + modes.Mode_Piece.day + " D " +
-            modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+          $scope.number = modes.Mode_Piece.year + "y" + modes.Mode_Piece.month + "M" + modes.Mode_Piece.day + "d" +
+            modes.Mode_Piece.hour + "h" + modes.Mode_Piece.minute + "m" + modes.Mode_Piece.second + "s";
         else if (difinition.plusArray[operation.preInputRes][operation.inputRes] == 2) {
-          $scope.number = modes.Mode_Time.hour + " : " + modes.Mode_Time.minute + " : " + modes.Mode_Time.second;
+          $scope.number = modes.Mode_Time.hour + ":" + modes.Mode_Time.minute + ":" + modes.Mode_Time.second;
         }
         else if(difinition.plusArray[operation.preInputRes][operation.inputRes] == 5)
         {
-          $scope.number = modes.Mode_SimpleNum.num + '';
+          $scope.number = modes.temp_Mode_SimpleNum.num + '';
         }
       }
       else if(operation.preOp == '-') {
         if ( difinition.minusArray[operation.preInputRes][operation.inputRes] == 1)
-          $scope.number = modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M " + modes.Mode_Piece.day + " D " +
-            modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+          $scope.number = modes.Mode_Piece.year + "y" + modes.Mode_Piece.month + "M" + modes.Mode_Piece.day + "d" +
+            modes.Mode_Piece.hour + "h" + modes.Mode_Piece.minute + "m" + modes.Mode_Piece.second + "s";
         else if ( difinition.minusArray[operation.preInputRes][operation.inputRes] == 2) {
-          $scope.number = modes.Mode_Time.hour + " : " + modes.Mode_Time.minute + " : " + modes.Mode_Time.second;
+          $scope.number = modes.Mode_Time.hour + ":" + modes.Mode_Time.minute + ":" + modes.Mode_Time.second;
         }
         else if( difinition.minusArray[operation.preInputRes][operation.inputRes] == 5)
         $scope.number = modes.Mode_SimpleNum.num + '';
       }
       else if(operation.preOp == '*') {
+        modes.to_fixed();
         if ( difinition.multiplyArray[operation.preInputRes][operation.inputRes] == 1)
-          $scope.number = modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M " + modes.Mode_Piece.day + " D " +
-            modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+          $scope.number = modes.Mode_Piece.year + "y" + modes.Mode_Piece.month + "M" + modes.Mode_Piece.day + "d" +
+            modes.Mode_Piece.hour + "h" + modes.Mode_Piece.minute + "m" + modes.Mode_Piece.second + "s";
         else if(difinition.multiplyArray[operation.preInputRes][operation.inputRes] == 5)
           $scope.number = modes.Mode_SimpleNum.num + '';
       }
       else if(operation.preOp == 'to') {
         if (operation.preInputRes == 2 && operation.inputRes == 2)
-          $scope.number = modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+          $scope.number = modes.Mode_Piece.hour + "h " + modes.Mode_Piece.minute + "m" + modes.Mode_Piece.second + "d";
         else if (operation.preInputRes == 3 && operation.inputRes == 3)
           $scope.number =modes.Todate.to_date + "Days";
       }
       else if(operation.preOp == '%')
         if(difinition.divisionArray[operation.preInputRes][operation.inputRes] == 1)
-        $scope.number = modes.Mode_Piece.year + " Y " + modes.Mode_Piece.month + " M " + modes.Mode_Piece.day + " D " +
-          modes.Mode_Piece.hour + " H " + modes.Mode_Piece.minute + " Min " + modes.Mode_Piece.second + " S ";
+        $scope.number = modes.Mode_Piece.year + "y" + modes.Mode_Piece.month + "M" + modes.Mode_Piece.day + "d" +
+          modes.Mode_Piece.hour + "h" + modes.Mode_Piece.minute + "m" + modes.Mode_Piece.second + "s";
       else if (difinition.divisionArray[operation.preInputRes][operation.inputRes] == 5)
         $scope.number = modes.Mode_SimpleNum.num + '';
       enabled.reg_piece($scope.arr,$scope.number,'c');
@@ -125,6 +126,12 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
       modes.delete_temps();
       modes.delete_modes();
 
+      var ref_num = $scope.number;
+      $scope.number = '';
+      for(var i = 0;i<ref_num.length ;i++) {
+        //  enabled.reg_piece($scope.arr,ref_num,$scope.number[i]);
+        $scope.check(ref_num[i]);
+      }
     }
 
   }
@@ -145,11 +152,11 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     num8:false,
     num9:false,
     num0:false,
+    dot:false,
     slash:true,
     colon:true,
     plus:true,
     sub:true,
-    dot:true,
     div:true,
     multi:true,
     to:true,
@@ -420,8 +427,8 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
       modes.delete_modes();
       modes.delete_temps();
       $scope.number = "";
-      $s = '';
       enabled.reg_piece($scope.arr, $scope.number, 'c');
+      $scope.check('');
     }
     else {
       disAll();

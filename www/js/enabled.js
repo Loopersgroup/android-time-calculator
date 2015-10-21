@@ -491,9 +491,10 @@ app.factory('enabled',function(modes){
         $arr.num7 = false;
         $arr.num8 = false;
         $arr.num9 = false;
+        $arr.dot  = false;
         $arr.plus = false;
-        $arr.sub = false;
-        $arr.div = false;
+        $arr.sub  = false;
+        $arr.div  = false;
         $arr.multi = false;
         console.log("year = " + year);
         return 2;
