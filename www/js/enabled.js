@@ -150,7 +150,11 @@ app.factory('enabled',function(modes){
     {
       $arr.div=false;
     }
-    //=================
+    //================= Dot =====
+    else if($s == '.')
+    {
+      $arr.dot = false;
+    }
   };
   //========Time Enable======================
   output.timeEnabled=function($arr,$string)
@@ -566,7 +570,6 @@ app.factory('enabled',function(modes){
       modes.Mode_SimpleNum.num = parseFloat($string);
       return 1;
     }
-
   }
   //=============Return=======================
   return output;
