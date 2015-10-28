@@ -26,51 +26,6 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
   {
     if($s == '+')
     {
-      //============== Pooya ==========
-      var in1 = 2511;
-      var in2 = 1254;
-      var temp_in2 = in2;
-      var temp_in1=in1;
-      var flag =0;
-      var f = 1;
-      while(in1 > 0)
-      {
-        var m = in1%10;
-        while(in2 >0)
-        {
-          console.log(in2);
-          if(m == in2%10)
-          {
-            flag = 1;
-            break;
-          }
-          else
-            in2 = parseInt(in2 / 10);
-        }
-        in2=temp_in2;
-        if(flag == 1)
-        {
-          flag = 0;
-          in1 = parseInt(in1 / 10);
-          console.log("Adad " + m + "Yaft Shod!");
-        }
-        else {
-          f = 0;
-          console.log("Error -- Adad " + m + "Yaft Nashod!");
-          break;
-        }
-
-
-
-        if(f != 0)
-        {
-         while(in2>0)
-         {
-break;
-         }
-        }
-      }
-
       //===============================
       operation.plus();
       $scope.number = '';
@@ -78,7 +33,7 @@ break;
       modes.delete_modes();
       $scope.check('');
     }
-    if($s == '-')
+    else if($s == '-')
     {
       operation.mines();
       $scope.number = '';
@@ -106,6 +61,7 @@ break;
       modes.delete_modes();
       //$scope.check('C');
       $scope.check('');
+      $scope.arr.num0 = true
     }
 
     else if($s == 'to')
@@ -132,6 +88,10 @@ break;
         else if (difinition.plusArray[operation.preInputRes][operation.inputRes] == 2) {
           $scope.number = modes.temp_Mode_Time.hour + ":" + modes.temp_Mode_Time.minute + ":" + modes.temp_Mode_Time.second;
         }
+        else if(difinition.plusArray[operation.preInputRes][operation.inputRes] == 4)
+        {
+          $scope.number = modes.temp_Mode_DateTime.year + "/" + modes.temp_Mode_DateTime.month + "/" + modes.temp_Mode_DateTime.day;
+        }
         else if(difinition.plusArray[operation.preInputRes][operation.inputRes] == 5)
         {
           $scope.number = modes.temp_Mode_SimpleNum.num + '';
@@ -154,6 +114,7 @@ break;
             modes.temp_Mode_Piece.hour + "h" + modes.temp_Mode_Piece.minute + "m" + modes.temp_Mode_Piece.second + "s";
         else if(difinition.multiplyArray[operation.preInputRes][operation.inputRes] == 5)
           $scope.number = toString(modes.temp_Mode_SimpleNum.num);
+        console.log("eeee" + modes.temp_Mode_SimpleNum.num);
       }
       else if(operation.preOp == 'to') {
         if (operation.preInputRes == 2 && operation.inputRes == 2)
@@ -163,10 +124,10 @@ break;
       }
       else if(operation.preOp == '%')
         if(difinition.divisionArray[operation.preInputRes][operation.inputRes] == 1)
-        $scope.number = modes.Mode_Piece.year + "y" + modes.Mode_Piece.month + "M" + modes.Mode_Piece.day + "d" +
-          modes.Mode_Piece.hour + "h" + modes.Mode_Piece.minute + "m" + modes.Mode_Piece.second + "s";
+        $scope.number = modes.temp_Mode_Piece.year + "y" + modes.temp_Mode_Piece.month + "M" + modes.temp_Mode_Piece.day + "d" +
+          modes.temp_Mode_Piece.hour + "h" + modes.temp_Mode_Piece.minute + "m" + modes.temp_Mode_Piece.second + "s";
       else if (difinition.divisionArray[operation.preInputRes][operation.inputRes] == 5)
-        $scope.number = modes.Mode_SimpleNum.num + '';
+        $scope.number = modes.temp_Mode_SimpleNum.num + '';
       enabled.reg_piece($scope.arr,$scope.number,'c');
       enabled.reset_able();
       modes.delete_temps();
@@ -399,9 +360,7 @@ break;
         $scope.check('C');
       }
       disAll();
-      console.log("Test back =" + $scope.number)
       $scope.num($s);
-      console.log("pre =" + $scope.number + "$s = " + $s);
       for (var i = 1; i < 6; i++) {
         console.log("Able " + i + " = " + enabled.able[i])
       }
@@ -411,7 +370,6 @@ break;
         modes.input_res[1] = 0;
       if (enabled.able[2] != 0) {
         modes.input_res[2] = enabled.timeEnabled($scope.arr, $scope.number);
-        console.log("Input Res Time = " + modes.input_res[2])
       }
       else
         modes.input_res[2] = 0;
@@ -461,5 +419,9 @@ break;
     $scope.arr.dot=true;
     $scope.arr.colon=true;
   }
+  $scope. datetest=function(){
 
+    console.log("test Date"+somedate);
+
+  }
 });

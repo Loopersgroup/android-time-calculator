@@ -554,11 +554,16 @@ app.factory('enabled',function(modes){
     else if($string !=""){
       for(var i=0;i<=9;i++)
         output.changeStatus($arr,i);
+      if($string.search(".")>0)
+      {
+      }
+      else
+        output.changeStatus($arr,'.');
+
       output.changeStatus($arr,'+');
       output.changeStatus($arr,'-');
       output.changeStatus($arr,'/');
       output.changeStatus($arr,'*');
-      output.changeStatus($arr,'.');
       modes.Mode_SimpleNum.num = parseFloat($string);
       return 2;
     }
@@ -566,7 +571,8 @@ app.factory('enabled',function(modes){
     {
       for(var i=0;i<=9;i++)
         output.changeStatus($arr,i);
-      $arr.dot = false;
+      if(flag_dot == 1)
+        $arr.dot = false;
       modes.Mode_SimpleNum.num = parseFloat($string);
       return 1;
     }

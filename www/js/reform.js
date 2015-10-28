@@ -119,7 +119,7 @@ app.factory('reform',function(modes)
   output.test=function() {
     console.log(modes.temp_Mode_Date.year + "y" +  modes.temp_Mode_Date.month + "M" +  modes.temp_Mode_Date.day + "D")
     var d1 = new Date(modes.temp_Mode_Date.year , modes.temp_Mode_Date.month -1 ,  modes.temp_Mode_Date.day) ;
-    var d2 = new Date(modes.temp_Mode_Date.year,modes.temp_Mode_Date.month -1 ,modes.temp_Mode_Date.day);
+    var d2 = new Date(modes.Mode_Date.year,modes.Mode_Date.month -1 ,modes.Mode_Date.day);
     console.log(d1);
     console.log(d2);
     var msDay;
