@@ -258,9 +258,9 @@ app.factory('enabled',function(modes){
       tmp=$num.substr(index1+1,$num.length);
       var index2=tmp.search('/');
       console.log("yeeeeeeeeeeear"+modes.Mode_Date.year)
-      console.log("saaaaaaaaraaaaaaa"+leap(modes.Mode_Date.year));
+      console.log("saaaaaaaaraaaaaaa"+output.leap(modes.Mode_Date.year));
       modes.Mode_Date.day=tmp.substr(index2+1,tmp.length);
-      if((modes.Mode_Date.month==2 || modes.Mode_Date.month==02)&& leap(modes.Mode_Date.year)==0 && end_date==2 ){
+      if((modes.Mode_Date.month==2 || modes.Mode_Date.month==02)&& output.leap(modes.Mode_Date.year)==0 && end_date==2 ){
         console.log("ooooooooooomad");
         $arr.num9 = true;
       }
@@ -305,7 +305,7 @@ app.factory('enabled',function(modes){
   };
 
 
-    var leap=function($year) {
+    output.leap=function($year) {
       if (($year % 4) == 0) {
         if (($year % 100) == 0 && ($year % 400) == 0) {
           return 1;
@@ -541,7 +541,8 @@ app.factory('enabled',function(modes){
       $arr.sec = false;
     }
   };
-  //=============Int Enabled =================
+                                                                            //=============Int Enabled =================
+
   output.intEnabled = function($arr,$string)
   {
     if (($string.search("y")>0 || $string.search("M")>0 || $string.search("w")>0 || $string.search("d")>0 ||
@@ -554,11 +555,13 @@ app.factory('enabled',function(modes){
     else if($string !=""){
       for(var i=0;i<=9;i++)
         output.changeStatus($arr,i);
-      if($string.search(".")>0)
+      if($string.search("\\.")>0)
       {
+        flag_dot = 0;
       }
       else
-        output.changeStatus($arr,'.');
+        $arr.dot = false;
+
 
       output.changeStatus($arr,'+');
       output.changeStatus($arr,'-');
@@ -577,6 +580,13 @@ app.factory('enabled',function(modes){
       return 1;
     }
   }
-  //=============Return=======================
+
+
+                                                                            //=============Date_TimeEnabled=============
+  output.dateTimeEnabled = function()
+  {
+
+  }
+                                                                            //=============Return=======================
   return output;
 });

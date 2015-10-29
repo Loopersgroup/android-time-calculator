@@ -78,7 +78,13 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     else if($s == '=')
     {
       operation.equal();
-      reform.calculate_piece();
+      if((operation.input_res == 1 && operation.preInputRes == 3 ) || (operation.input_res == 3 && operation.preInputRes == 1 )
+        || (operation.input_res == 2 && operation.preInputRes == 3 ) || (operation.input_res == 3 && operation.preInputRes == 2 ))
+      {
+
+      }
+      else
+        reform.calculate_piece();
       operation.time_reform();
       console.log("pre Op = " + operation.preOp);
       if(operation.preOp == '+') {
@@ -90,7 +96,8 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
         }
         else if(difinition.plusArray[operation.preInputRes][operation.inputRes] == 4)
         {
-          $scope.number = modes.temp_Mode_DateTime.year + "/" + modes.temp_Mode_DateTime.month + "/" + modes.temp_Mode_DateTime.day;
+          $scope.number = modes.temp_Mode_DateTime.year + "/" + modes.temp_Mode_DateTime.month + "/" + modes.temp_Mode_DateTime.day
+          + " " + modes.temp_Mode_DateTime.hour + ":" + modes.temp_Mode_DateTime.minute + ":" + modes.temp_Mode_DateTime.second;
         }
         else if(difinition.plusArray[operation.preInputRes][operation.inputRes] == 5)
         {
@@ -112,9 +119,11 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
         if ( difinition.multiplyArray[operation.preInputRes][operation.inputRes] == 1)
           $scope.number = modes.temp_Mode_Piece.year + "y" + modes.temp_Mode_Piece.month + "M" + modes.temp_Mode_Piece.day + "d" +
             modes.temp_Mode_Piece.hour + "h" + modes.temp_Mode_Piece.minute + "m" + modes.temp_Mode_Piece.second + "s";
-        else if(difinition.multiplyArray[operation.preInputRes][operation.inputRes] == 5)
-          $scope.number = toString(modes.temp_Mode_SimpleNum.num);
-        console.log("eeee" + modes.temp_Mode_SimpleNum.num);
+        else if(difinition.multiplyArray[operation.preInputRes][operation.inputRes] == 5) {
+          $scope.number = "";
+          $scope.number += modes.temp_Mode_SimpleNum.num;
+          console.log("eeee" + modes.temp_Mode_SimpleNum.num);
+        }
       }
       else if(operation.preOp == 'to') {
         if (operation.preInputRes == 2 && operation.inputRes == 2)
@@ -122,12 +131,13 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
         else if (operation.preInputRes == 3 && operation.inputRes == 3)
           $scope.number =modes.Todate.to_date + "d";
       }
-      else if(operation.preOp == '%')
-        if(difinition.divisionArray[operation.preInputRes][operation.inputRes] == 1)
-        $scope.number = modes.temp_Mode_Piece.year + "y" + modes.temp_Mode_Piece.month + "M" + modes.temp_Mode_Piece.day + "d" +
-          modes.temp_Mode_Piece.hour + "h" + modes.temp_Mode_Piece.minute + "m" + modes.temp_Mode_Piece.second + "s";
-      else if (difinition.divisionArray[operation.preInputRes][operation.inputRes] == 5)
-        $scope.number = modes.temp_Mode_SimpleNum.num + '';
+      else if(operation.preOp == '%') {
+        if (difinition.divisionArray[operation.preInputRes][operation.inputRes] == 1)
+          $scope.number = modes.temp_Mode_Piece.year + "y" + modes.temp_Mode_Piece.month + "M" + modes.temp_Mode_Piece.day + "d" +
+            modes.temp_Mode_Piece.hour + "h" + modes.temp_Mode_Piece.minute + "m" + modes.temp_Mode_Piece.second + "s";
+        else if (difinition.divisionArray[operation.preInputRes][operation.inputRes] == 5)
+          $scope.number = modes.temp_Mode_SimpleNum.num + '';
+      }
       enabled.reg_piece($scope.arr,$scope.number,'c');
       enabled.reset_able();
       modes.delete_temps();
@@ -419,9 +429,12 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     $scope.arr.dot=true;
     $scope.arr.colon=true;
   }
-  $scope. datetest=function(){
-
-    console.log("test Date"+somedate);
+  $scope.datetest=function(){
+    var date = new Date(3,2,3);
+    date.setYear(date.getFullYear());
+    date.setMonth(date.getMonth() );
+    date.setDate(date.getDate() + parseInt("3"));
+    console.log(date.getMonth());
 
   }
 });
