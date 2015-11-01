@@ -9,10 +9,8 @@ app.factory('enabled',function(modes){
   {
     for (var i=0;i<6;i++)
       output.able[i]=1;
-  }
-
+  };
   //===========================
-
   var time_reg= function($arr,$num,$s)
   {
     var c=$num+$s;
@@ -39,17 +37,13 @@ app.factory('enabled',function(modes){
 
       return 1;
     }
-    //else if(/\d{1}/.test(c))
-    //{
-    //  console.log("true6")
-    //  return 1;
-    //}
+
     else
     {
       return 0;
     }
   };
-
+  //==============================
   var date_reg = function($num,$s)
   {
     var c=$num + $s;
@@ -84,7 +78,7 @@ app.factory('enabled',function(modes){
     else {
       return 0;
     }
-  }
+  };
   //=======Change Status=====================
   output.changeStatus=function($arr,$s)
   {
@@ -215,9 +209,7 @@ app.factory('enabled',function(modes){
     }
     return com;
   };
-
   //=========== Date Enabled 3=================
-
   output.dateEnabled= function($arr,$num)
   {
     for(var i=0;i<=9;i++)
@@ -240,28 +232,22 @@ app.factory('enabled',function(modes){
     var c=$num;
     if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/([0])$/.test(c))
     {
-      console.log("1")
       return 1;
     }
     else if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/(?:[12]\d|(3[01])|(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9))$/.test(c))
     {
-      console.log("2");
       var end_date = $num.substr($num.length-1,$num.length);
       if(end_date == 3 && modes.Mode_Date.month == 2)
       {
         $arr.num0 = true;
         $arr.num1 = true;
       }
-      console.log("end date"+end_date)
       var index1=$num.search('/');
       var tmp;
       tmp=$num.substr(index1+1,$num.length);
       var index2=tmp.search('/');
-      console.log("yeeeeeeeeeeear"+modes.Mode_Date.year)
-      console.log("saaaaaaaaraaaaaaa"+output.leap(modes.Mode_Date.year));
       modes.Mode_Date.day=tmp.substr(index2+1,tmp.length);
       if((modes.Mode_Date.month==2 || modes.Mode_Date.month==02)&& output.leap(modes.Mode_Date.year)==0 && end_date==2 ){
-        console.log("ooooooooooomad");
         $arr.num9 = true;
       }
       if(end_date==3) {
@@ -273,14 +259,12 @@ app.factory('enabled',function(modes){
     }
     else if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])\/$/.test(c))
     {
-      console.log("3");
 
       return 1;
 
     }
     else if(/^(?:\d{1,4})\/(?:(01|02|03|04|05|06|07|08|09)|(1|2|3|4|5|6|7|8|9)|1[012])$/.test(c))
     {
-      console.log("4");
       var index=$num.search('/');
       modes.Mode_Date.month=$num.substr(index+1,$num.length);
       return 1;
@@ -304,8 +288,8 @@ app.factory('enabled',function(modes){
     }
   };
 
-
-    output.leap=function($year) {
+    output.leap=function($year)
+    {
       if (($year % 4) == 0) {
         if (($year % 100) == 0 && ($year % 400) == 0) {
           return 1;
@@ -390,12 +374,9 @@ app.factory('enabled',function(modes){
     }
     else {
       var c = $temp + $present;
-      console.log("c = " + c);
-      console.log("T start = " + t);
       if ((/(\d{1,8})$/.test($present) && flag)) {
         //$scope.main_temp = $scope.temp + $scope.present;
         t += $present;
-        console.log("t3=" + t);
         $arr.num0 = false;
         $arr.num1 = false;
         $arr.num2 = false;
@@ -409,7 +390,6 @@ app.factory('enabled',function(modes){
         if (flag_dot == 1)
           $arr.dot = false;
         check_stamp($arr);
-        console.log("year = " + year);
         return 1;
       }
       else if(c == '')
@@ -447,42 +427,35 @@ app.factory('enabled',function(modes){
         || $present == 's') {
         flag_dot = 1;
         t= t.substr(1, t.length);
-        console.log("t1=" + t);
         //Save t Then Reset it!===>> Done
         if ($present == "y") {
           year = 1;
           modes.Mode_Piece.year=t;
-          console.log("y=" + modes.Mode_Piece.year);
         }
         if ($present == "M") {
           month = 1;
           modes.Mode_Piece.month=t;
-          console.log("y=" + modes.Mode_Piece.month);
+
         }
         if ($present == "w") {
           week = 1;
           modes.Mode_Piece.week=t;
-          console.log("y=" + modes.Mode_Piece.week);
         }
         if ($present == "d") {
           day = 1;
           modes.Mode_Piece.day=t;
-          console.log("Dayyyy = " + modes.Mode_Piece.day);
         }
         if ($present == "h") {
           hour = 1;
           modes.Mode_Piece.hour=t;
-          console.log("y=" + modes.Mode_Piece.hour);
         }
         if ($present == "m") {
           minute = 1;
           modes.Mode_Piece.minute=t;
-          console.log("y=" + modes.Mode_Piece.minute);
         }
         if ($present == "s") {
           second = 1;
           modes.Mode_Piece.second=t;
-          console.log("y=" + modes.Mode_Piece.second);
         }
         t='0';
         $arr.num0 = false;
@@ -500,11 +473,9 @@ app.factory('enabled',function(modes){
         $arr.sub  = false;
         $arr.div  = false;
         $arr.multi = false;
-        console.log("year = " + year);
         return 2;
       }
       else {
-        console.log("Present = "+$present);
         flag = 0;
         year = 1;
         month = 1;
@@ -517,7 +488,8 @@ app.factory('enabled',function(modes){
       }
     }
   };
-  var check_stamp= function ($arr){
+  var check_stamp= function ($arr)
+  {
     if(year==0)
     {
       $arr.year = false;
@@ -541,8 +513,7 @@ app.factory('enabled',function(modes){
       $arr.sec = false;
     }
   };
-                                                                            //=============Int Enabled =================
-
+  //=============Int Enabled ================
   output.intEnabled = function($arr,$string)
   {
     if (($string.search("y")>0 || $string.search("M")>0 || $string.search("w")>0 || $string.search("d")>0 ||
@@ -579,14 +550,44 @@ app.factory('enabled',function(modes){
       modes.Mode_SimpleNum.num = parseFloat($string);
       return 1;
     }
-  }
-
-
-                                                                            //=============Date_TimeEnabled=============
-  output.dateTimeEnabled = function()
+  };
+  //=============Date_TimeEnabled=============
+  var date_flag;
+  output.dateTimeEnabled = function($arr,$string)
   {
-
-  }
-                                                                            //=============Return=======================
+    var strdate;
+    var strtime;
+    var i = $string.search(' ');
+    console.log(i);
+    if(i>0) {
+      strdate = $string.substr(0, i);
+      strtime = $string.substr(i + 1, $string.length);
+      date_flag = output.dateEnabled($arr, strdate);
+      if(date_flag == 2)
+      {
+        $arr.num0 = true;
+        $arr.num1 = true;
+        $arr.num2 = true;
+        $arr.num3 = true;
+        $arr.num4 = true;
+        $arr.num5 = true;
+        $arr.num6 = true;
+        $arr.num7 = true;
+        $arr.num8 = true;
+        $arr.num9 = true;
+      }
+      console.log("Date is :" + strdate);
+      console.log("time is :" + strtime);
+      if (date_flag && output.timeEnabled($arr, strtime)) {
+        if ( output.timeEnabled($arr, strtime) == 2)
+          return 2;
+        else
+          return 1;
+      }
+      else return 0;
+    }
+    else return 0;
+  };
+  //=============Return=======================
   return output;
 });

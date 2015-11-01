@@ -7,7 +7,6 @@ app.factory('reform',function(modes,enabled)
 
   output.calculate_piece = function()
   {
-    console.log("loggggg111111112" + (parseFloat(modes.temp_Mode_Piece.day%1)))
     modes.temp_Mode_Piece.day = parseFloat(modes.temp_Mode_Piece.day) + modes.temp_Mode_Piece.week * 7;
     modes.temp_Mode_Piece.week = 0;
     var m=0;
@@ -241,14 +240,11 @@ app.factory('reform',function(modes,enabled)
 
 
   output.test=function() {
-    console.log(modes.temp_Mode_Date.year + "y" +  modes.temp_Mode_Date.month + "M" +  modes.temp_Mode_Date.day + "D")
     var d1 = new Date(modes.temp_Mode_Date.year , modes.temp_Mode_Date.month -1 ,  modes.temp_Mode_Date.day) ;
     var d2 = new Date(modes.Mode_Date.year,modes.Mode_Date.month -1 ,modes.Mode_Date.day);
-    console.log(d1);
-    console.log(d2);
+
     var msDay;
     msDay = 60 * 60 * 24 * 1000;
-    console.log(Math.floor((d2 - d1) / msDay) + ' full days between');
     modes.Todate.to_date =  Math.floor((d2 - d1) / msDay);
   };
   return output;

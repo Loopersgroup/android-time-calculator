@@ -44,7 +44,6 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     }
     else if($s == '*')
     {
-      //console.log("zarrrrrb ooomad");
       operation.multiply();
       $scope.number = '';
       enabled.reg_piece($scope.arr,$scope.number,'c');
@@ -66,7 +65,6 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
 
     else if($s == 'to')
     {
-      console.log(" tooooooomad");
       operation.To();
       $scope.number = '';
       modes.delete_modes();
@@ -86,7 +84,6 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
       else
         reform.calculate_piece();
       operation.time_reform();
-      console.log("pre Op = " + operation.preOp);
       if(operation.preOp == '+') {
         if (difinition.plusArray[operation.preInputRes][operation.inputRes] == 1)
           $scope.number = modes.temp_Mode_Piece.year + "y" + modes.temp_Mode_Piece.month + "M" + modes.temp_Mode_Piece.day + "d" +
@@ -122,7 +119,6 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
         else if(difinition.multiplyArray[operation.preInputRes][operation.inputRes] == 5) {
           $scope.number = "";
           $scope.number += modes.temp_Mode_SimpleNum.num;
-          console.log("eeee" + modes.temp_Mode_SimpleNum.num);
         }
       }
       else if(operation.preOp == 'to') {
@@ -153,13 +149,8 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     }
 
 
-  }
-
-
-
-
-
-                                          //========= Input ===========================
+  };
+  //========= Input ===========================
   $scope.arr={
     num1:false,
     num2:false,
@@ -273,55 +264,7 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     {
       enabled.reg_piece($scope.arr,$scope.number[i]);
     }
-    /*
-    var temp_s = $scope.number.substr($scope.number.length - 1, $scope.number.length);
-    if(temp_s == 'c') {
-      $scope.number = $scope.number.replace(/.$/, "");
-      $scope.number = $scope.number.replace(/.$/, "");
-      $scope.number = $scope.number.replace(/.$/, "");
-      reform_temp = 'sec';
-      enabled.back_piece("sec");
-    }
-    else if(temp_s == 'n')
-    {
-      $scope.number = $scope.number.replace(/.$/, "");
-      var s= $scope.number.substr($scope.number.length - 1, $scope.number.length);
-      if(s == 'i')
-      {
-        reform_temp = 'min';
-        enabled.back_piece("min");
-      }
-      else if(s == 'o') {
-        reform_temp = 'mon';
-        enabled.back_piece("mon");
-      }
-      $scope.number = $scope.number.replace(/.$/, "");
-      $scope.number = $scope.number.replace(/.$/, "");
-    }
-    else if(temp_s == 'd')
-    {
-      $scope.number = $scope.number.replace(/.$/, "");
-      reform_temp = 'd';
-      enabled.back_piece("day");
-    }
-    else if(temp_s == 'w')
-    {
-      $scope.number = $scope.number.replace(/.$/,"");
-      enabled.back_piece("week");
-      reform_temp = 'w'
-    }
-    else if(temp_s == 'y')
-    {
-      $scope.number = $scope.number.replace(/.$/,"");
-      enabled.back_piece("year");
-      reform_temp = 'y';
-    }
-    else
-    {
-      $scope.number = $scope.number.replace(/.$/,"");
-      reform_temp = temp_s;
-    }*/
-  }
+  };
 //--------------------------------------------------------------------------------------------
 
   $scope.check = function($s) {
@@ -333,7 +276,6 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
         back_temp = '';
         $scope.check("")
       }
-        console.log("Back_Temp = " + back_temp + "$scope = " + $scope.number);
       if(back_temp!='')
       {
         modes.delete_modes();
@@ -342,8 +284,6 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
         var ref_num = $scope.number;
         //$scope.check('C');
         $scope.number = '';
-        console.log("lenght = " + (ref_num.length));
-        console.log("salam");
         for(var i = 0;i<ref_num.length - 1;i++) {
          //  enabled.reg_piece($scope.arr,ref_num,$scope.number[i]);
           $scope.check(ref_num[i]);
@@ -355,7 +295,6 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
 
     }
     else if ($s == 'C') {
-      console.log("salam");
       enabled.reset_able();
       modes.delete_modes();
       modes.delete_temps();
@@ -372,7 +311,6 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
       disAll();
       $scope.num($s);
       for (var i = 1; i < 6; i++) {
-        console.log("Able " + i + " = " + enabled.able[i])
       }
       if (enabled.able[1] != 0)
         modes.input_res[1] = enabled.reg_piece($scope.arr, $scope.number, $s);
@@ -388,15 +326,22 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
         modes.input_res[3] = enabled.dateEnabled($scope.arr, $scope.number);
       else
         modes.input_res[3] = 0;
+
+      if(enabled.able[4] != 0) {
+        modes.input_res[4] = enabled.dateTimeEnabled($scope.arr, $scope.number);
+        console.log( modes.input_res[4]);
+      }
+      else
+        modes.input_res[4]=0;
+
+
       if (enabled.able[5] != 0)
         modes.input_res[5] = enabled.intEnabled($scope.arr, $scope.number);
       else
         modes.input_res[5] = 0;
-      console.log("Int = " + modes.Mode_SimpleNum.num);
-      for (var i = 1; i < 6; i++) {
-        console.log("Input Res : " + i + " = " + modes.input_res[i])
-      }
-      $scope.pre_number = $s
+
+      $scope.pre_number = $s;
+
     }
   };
 
@@ -428,13 +373,12 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     $scope.arr.slash=true;
     $scope.arr.dot=true;
     $scope.arr.colon=true;
-  }
+  };
   $scope.datetest=function(){
     var date = new Date(3,2,3);
     date.setYear(date.getFullYear());
     date.setMonth(date.getMonth() );
     date.setDate(date.getDate() + parseInt("3"));
-    console.log(date.getMonth());
 
   }
 });
