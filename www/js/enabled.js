@@ -555,7 +555,7 @@ app.factory('enabled',function(modes){
     else if($string !=""){
       for(var i=0;i<=9;i++)
         output.changeStatus($arr,i);
-      if($string.search("\\.")>0)
+      if($string.search("\\.")>=0)
       {
         flag_dot = 0;
       }

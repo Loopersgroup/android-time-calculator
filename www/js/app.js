@@ -189,13 +189,9 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
   };
 
   $scope.pre_number='';
-  //   $scope.matrix();
   $scope.number='';
-  //time_reg($scope.number);
-  //date_reg($scope.number);
   $scope.temp='';
 
-  var reform_temp;
   $scope.num=function($n)
   {
     $scope.number += $n;
@@ -344,10 +340,16 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
         $scope.number = '';
         console.log("lenght = " + (ref_num.length));
         console.log("salam");
-        for(var i = 0;i<ref_num.length - 1;i++) {
-         //  enabled.reg_piece($scope.arr,ref_num,$scope.number[i]);
-          $scope.check(ref_num[i]);
+        if(ref_num.length ==  1)
+        {
+          console.log("hh")
+          $scope.check("");
         }
+        else
+           for(var i = 0;i<ref_num.length - 1;i++) {
+           //  enabled.reg_piece($scope.arr,ref_num,$scope.number[i]);
+            $scope.check(ref_num[i]);
+          }
         //$scope.number = $scope.number.replace(/.$/,"");
         //$s=$scope.number.substr($scope.number.length-2,$scope.number.length - 1);
         //$s = '';
