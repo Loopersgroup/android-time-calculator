@@ -155,7 +155,11 @@ app.factory('reform',function(modes,enabled)
       }
     }
 
-
+    if(modes.Mode_Piece.day >= 0)
+    {
+      modes.Mode_Piece.hour = parseFloat(modes.Mode_Piece.hour) + parseFloat((modes.Mode_Piece.day)%1)*24;
+      modes.Mode_Piece.day = parseFloat( modes.Mode_Piece.day) - parseFloat((modes.Mode_Piece.day)%1);
+    }
     if (modes.Mode_Piece.hour >= 0){
       modes.Mode_Piece.minute = parseFloat(modes.Mode_Piece.minute) + parseFloat(((modes.Mode_Piece.hour)%1)*60);
       modes.Mode_Piece.hour = parseFloat(modes.Mode_Piece.hour) - parseFloat((modes.Mode_Piece.hour)%1);
@@ -213,19 +217,21 @@ app.factory('reform',function(modes,enabled)
       modes.Mode_Piece.month = parseFloat(modes.Mode_Piece.month) + parseFloat((modes.Mode_Piece.year%1)*12);
       modes.Mode_Piece.year = parseFloat(modes.Mode_Piece.year) - parseFloat(modes.Mode_Piece.year%1);
     }
-
+    date.setYear(date.getFullYear() + parseInt(modes.Mode_Piece.year));
+    modes.Mode_Piece.year = 0;
     if(modes.Mode_Piece.month >= 0)
     {
-      if(date.getMonth() == 1 || date.getMonth() == 3 || date.getMonth() ==5 || date.getMonth() == 7  ||
-        date.getMonth() == 8  || date.getMonth() == 10  || date.getMonth() == 11 )
+      console.log("Year = " + enabled.leap(parseInt(date.getFullYear())) + "Test = " + enabled.leap(2012) + " Month = " + date.getMonth())
+      if(date.getMonth() == 0 || date.getMonth() == 2 || date.getMonth() == 4 || date.getMonth() == 6  ||
+        date.getMonth() == 7  || date.getMonth() == 9  || date.getMonth() == 10 )
           modes.Mode_Piece.day = parseFloat(modes.Mode_Piece.day) + parseFloat((modes.Mode_Piece.month%1) * 31);
-      else if(date.getMonth() == 4 || date.getMonth() == 6 || date.getMonth() == 9  || date.getMonth() == 12)
+      else if(date.getMonth() == 3 || date.getMonth() == 5 || date.getMonth() == 8  || date.getMonth() == 11)
         modes.Mode_Piece.day = parseFloat(modes.Mode_Piece.day) + parseFloat((modes.Mode_Piece.month%1) * 30);
-      else if(date.getMonth() == 2 && enabled.leap(date.getYear()) == 1)
+      else if(date.getMonth() == 1 && enabled.leap(parseInt(date.getFullYear())) == 1)
       {
         modes.Mode_Piece.day = parseFloat(modes.Mode_Piece.day) + parseFloat((modes.Mode_Piece.month%1) * 29);
       }
-      else if(date.getMonth() == 2 && enabled.leap(date.getYear()) == 0)
+      else if(date.getMonth() == 1 && enabled.leap(parseInt(date.getFullYear())) == 0)
       {
         modes.Mode_Piece.day = parseFloat(modes.Mode_Piece.day) + parseFloat((modes.Mode_Piece.month%1) * 28);
       }

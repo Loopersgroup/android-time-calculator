@@ -215,7 +215,50 @@ app.factory('enabled',function(modes){
     }
     return com;
   };
+//=============Date_TimeEnabled=============
+  var date_flag;
+  output.dateTimeEnabled = function($arr,$string)
+  {
+    var strdate;
+    var strtime;
+    var i = $string.search(' ');
+    console.log(i);
+    if(i>0) {
+      strdate = $string.substr(0, i);
+      strtime = $string.substr(i + 1, $string.length);
+      date_flag = output.dateEnabled($arr, strdate);
+      if(date_flag == 2)
+      {
+        $arr.num0 = true;
+        $arr.num1 = true;
+        $arr.num2 = true;
+        $arr.num3 = true;
+        $arr.num4 = true;
+        $arr.num5 = true;
+        $arr.num6 = true;
+        $arr.num7 = true;
+        $arr.num8 = true;
+        $arr.num9 = true;
+      }
+      console.log("Date is :" + strdate);
+      console.log("time is :" + strtime);
+      if (date_flag && output.timeEnabled($arr, strtime)) {
+        modes.Mode_DateTime.year = modes.Mode_Date.year
+        modes.Mode_DateTime.month = modes.Mode_Date.month
+        modes.Mode_DateTime.day = modes.Mode_Date.day
 
+        modes.Mode_DateTime.hour = modes.Mode_Time.hour
+        modes.Mode_DateTime.minute = modes.Mode_Time.minute
+        modes.Mode_DateTime.second = modes.Mode_Time.second
+        if ( output.timeEnabled($arr, strtime) == 2)
+          return 2;
+        else
+          return 1;
+      }
+      else return 0;
+    }
+    else return 0;
+  };
   //=========== Date Enabled 3=================
 
   output.dateEnabled= function($arr,$num)
@@ -313,6 +356,8 @@ app.factory('enabled',function(modes){
         else if (($year % 100) == 0 && ($year % 400) != 0) {
           return 0;
         }
+        else if(($year % 100) != 0 )
+          return 1;
       }
       else {
         return 0;
@@ -517,7 +562,8 @@ app.factory('enabled',function(modes){
       }
     }
   };
-  var check_stamp= function ($arr){
+  var check_stamp= function ($arr)
+  {
     if(year==0)
     {
       $arr.year = false;
@@ -541,8 +587,7 @@ app.factory('enabled',function(modes){
       $arr.sec = false;
     }
   };
-                                                                            //=============Int Enabled =================
-
+                                                                            //=============Int Enabled ===============
   output.intEnabled = function($arr,$string)
   {
     if (($string.search("y")>0 || $string.search("M")>0 || $string.search("w")>0 || $string.search("d")>0 ||
@@ -581,12 +626,6 @@ app.factory('enabled',function(modes){
     }
   }
 
-
-                                                                            //=============Date_TimeEnabled=============
-  output.dateTimeEnabled = function()
-  {
-
-  }
                                                                             //=============Return=======================
   return output;
 });

@@ -26,12 +26,15 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
   {
     if($s == '+')
     {
+      console.log( "modes.temp_Mode_DateTime.1 = "  + modes.temp_Mode_DateTime.hour);
       //===============================
       operation.plus();
+      console.log( "modes.temp_Mode_DateTime.2 = "  + modes.temp_Mode_DateTime.hour);
       $scope.number = '';
       enabled.reg_piece($scope.arr,$scope.number,'c');
       modes.delete_modes();
       $scope.check('');
+      console.log( "modes.temp_Mode_DateTime.3 = "  + modes.temp_Mode_DateTime.hour);
     }
     else if($s == '-')
     {
@@ -199,7 +202,7 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
   $scope.num=function($n)
   {
     $scope.number += $n;
-  }
+  };
 //-------------------------------------------------------------------------------------------
 //  $scope.date_time_reg = function($num,$s)
 //  {
@@ -321,7 +324,7 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
       $scope.number = $scope.number.replace(/.$/,"");
       reform_temp = temp_s;
     }*/
-  }
+  };
 //--------------------------------------------------------------------------------------------
 
   $scope.check = function($s) {
@@ -388,6 +391,14 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
         modes.input_res[3] = enabled.dateEnabled($scope.arr, $scope.number);
       else
         modes.input_res[3] = 0;
+
+      if(enabled.able[4] != 0) {
+        modes.input_res[4] = enabled.dateTimeEnabled($scope.arr, $scope.number);
+        console.log( modes.input_res[4]);
+      }
+      else
+        modes.input_res[4]=0;
+
       if (enabled.able[5] != 0)
         modes.input_res[5] = enabled.intEnabled($scope.arr, $scope.number);
       else
@@ -397,7 +408,9 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
         console.log("Input Res : " + i + " = " + modes.input_res[i])
       }
       $scope.pre_number = $s
+
     }
+    console.log(enabled.leap(2013) + " " + enabled.leap(2009))
   };
 
   //========= Disable All============================
@@ -428,7 +441,7 @@ app.controller('basic', function($scope,regex,enabled,difinition,modes,operation
     $scope.arr.slash=true;
     $scope.arr.dot=true;
     $scope.arr.colon=true;
-  }
+  };
   $scope.datetest=function(){
     var date = new Date(3,2,3);
     date.setYear(date.getFullYear());

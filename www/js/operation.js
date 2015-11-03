@@ -13,6 +13,7 @@ app.factory("operation" ,function (modes,enabled,difinition,reform){
       if (modes.input_res[i] == 2)
         output.inputRes = i;
     }
+    console.log("input Reeeeeeeeeees = " + output.inputRes);
     if(output.inputRes == 1)
     {
       modes.temp_Mode_Piece.year = modes.Mode_Piece.year;
@@ -37,6 +38,15 @@ app.factory("operation" ,function (modes,enabled,difinition,reform){
       modes.temp_Mode_Date.hour = modes.Mode_Date.hour;
       modes.temp_Mode_Date.minute = modes.Mode_Date.minute;
       modes.temp_Mode_Date.second = modes.Mode_Date.second;
+    }
+    else if(output.inputRes == 4)
+    {
+      modes.temp_Mode_DateTime.year = modes.Mode_DateTime.year;
+      modes.temp_Mode_DateTime.month = modes.Mode_DateTime.month;
+      modes.temp_Mode_DateTime.day = modes.Mode_DateTime.day;
+      modes.temp_Mode_DateTime.hour = modes.Mode_DateTime.hour;
+      modes.temp_Mode_DateTime.minute = modes.Mode_DateTime.minute;
+      modes.temp_Mode_DateTime.second = modes.Mode_DateTime.second;
     }
     else if(output.inputRes == 5)
     {
@@ -126,23 +136,27 @@ app.factory("operation" ,function (modes,enabled,difinition,reform){
       }
       if((input1==1 && input2==3) || (input1==3 && input2==1)) {
         var date = new Date(modes.temp_Mode_Date.year,modes.temp_Mode_Date.month - 1,modes.temp_Mode_Date.day);
-
         reform.reform_piece_time();
-
+        reform.reform_piece_date(date);
         //var d = new Date(modes.Mode_Date.year,modes.Mode_Date.month,modes.Mode_Date.day);
         //d.setYear(d.getFullYear() + parseInt(modes.Mode_Piece.year));
         //d.setMonth(d.getMonth() + parseInt(modes.Mode_Piece.month));
+        console.log("1Day = " + modes.Mode_Piece.day)
+        if(modes.Mode_Piece.day >= 0)
+        {
+          modes.Mode_Piece.hour = parseFloat(modes.Mode_Piece.hour) + parseFloat((modes.Mode_Piece.day)%1)*24;
+          modes.Mode_Piece.day = parseFloat( modes.Mode_Piece.day) - parseFloat((modes.Mode_Piece.day)%1);
+        }
+        console.log("2Day = " + modes.Mode_Piece.day)
         date.setDate(date.getDate()+ parseInt(modes.Mode_Piece.day));
-        modes.Mode_Piece.day = 0;
+        modes.Mode_Piece.day = modes.Mode_Piece.day % 1;
 
         var m = modes.Mode_Piece.month;
         date.setMonth(date.getMonth() +parseFloat(m) - parseFloat(m)%1);
-        modes.Mode_Piece.month = parseFloat(m)%1;
-        reform.reform_piece_date(date);
+        modes.Mode_Piece.month = m % 1;
+        reform.reform_piece_time();
 
 
-
-        date.setYear(date.getFullYear() + parseInt(modes.Mode_Piece.year));
         date.setMonth(date.getMonth() + parseInt(modes.Mode_Piece.month));
         date.setDate(date.getDate()+ parseInt(modes.Mode_Piece.day));
 console.log("Day : " + modes.Mode_Piece.day + "Month : " + modes.Mode_Piece.month + "Year : " + modes.Mode_Piece.year);
@@ -153,8 +167,9 @@ console.log("Day : " + modes.Mode_Piece.day + "Month : " + modes.Mode_Piece.mont
         modes.temp_Mode_DateTime.hour = modes.Mode_Piece.hour
         modes.temp_Mode_DateTime.minute = modes.Mode_Piece.minute
         modes.temp_Mode_DateTime.second = modes.Mode_Piece.second
+
       }
-      if((input1==1 && input2==4) || (input1==4 && input2==1)) {
+    /*  if((input1==1 && input2==4) || (input1==4 && input2==1)) {
         if(input1==1) {
           modes.temp_Mode_DateTime.year = modes.Mode_DateTime.year + modes.temp_Mode_Piece.year;
           modes.temp_Mode_DateTime.month = modes.Mode_DateTime.month + modes.temp_Mode_Piece.month;
@@ -173,7 +188,40 @@ console.log("Day : " + modes.Mode_Piece.day + "Month : " + modes.Mode_Piece.mont
           modes.temp_Mode_DateTime.minute = modes.temp_Mode_DateTime.minute + modes.temp_Mode_Piece.minute;
           modes.temp_Mode_DateTime.second = modes.temp_Mode_DateTime.second + modes.temp_Mode_Piece.second;
         }
-      }
+      }*/
+      if((input1==1 && input2==4) || (input1==4 && input2==1)) {
+
+        console.log( "modes.temp_Mode_DateTime.second = "  + modes.temp_Mode_DateTime.hour);
+      var date = new Date(modes.temp_Mode_DateTime.year,modes.temp_Mode_DateTime.month - 1,modes.temp_Mode_DateTime.day);
+        modes.Mode_Piece.second = parseFloat(modes.Mode_Piece.second) + parseFloat(modes.temp_Mode_DateTime.second);
+        modes.Mode_Piece.minute = parseFloat(modes.Mode_Piece.minute) + parseFloat(modes.temp_Mode_DateTime.minute);
+        modes.Mode_Piece.hour = parseFloat(modes.Mode_Piece.hour) + parseFloat(modes.temp_Mode_DateTime.hour);
+      reform.reform_piece_time();
+
+      //var d = new Date(modes.Mode_Date.year,modes.Mode_Date.month,modes.Mode_Date.day);
+      //d.setYear(d.getFullYear() + parseInt(modes.Mode_Piece.year));
+      //d.setMonth(d.getMonth() + parseInt(modes.Mode_Piece.month));
+      date.setDate(date.getDate()+ parseInt(modes.Mode_Piece.day));
+      modes.Mode_Piece.day = 0;
+
+      var m = modes.Mode_Piece.month;
+      date.setMonth(date.getMonth() +parseFloat(m) - parseFloat(m)%1);
+      modes.Mode_Piece.month = parseFloat(m)%1;
+      reform.reform_piece_date(date);
+
+
+
+      date.setYear(date.getFullYear() + parseInt(modes.Mode_Piece.year));
+      date.setMonth(date.getMonth() + parseInt(modes.Mode_Piece.month));
+      date.setDate(date.getDate()+ parseInt(modes.Mode_Piece.day));
+      modes.temp_Mode_DateTime.year = date.getFullYear();
+      modes.temp_Mode_DateTime.month = date.getMonth() + 1;
+      modes.temp_Mode_DateTime.day = date.getDate();
+
+      modes.temp_Mode_DateTime.hour = modes.Mode_Piece.hour
+      modes.temp_Mode_DateTime.minute = modes.Mode_Piece.minute
+      modes.temp_Mode_DateTime.second = modes.Mode_Piece.second
+    }
 
       if((input1==2 && input2==3) || (input1==3 && input2==2)) {
         if(input1==2) {
